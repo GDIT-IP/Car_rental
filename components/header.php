@@ -7,8 +7,8 @@
     <?php
         if (!isset($_COOKIE['user'])):
     ?>
-        <a class="mx-1 btn btn-outline-primary" href="#">Sign In</a>
-        <a class="mx-1 btn btn-outline-primary" href="#">Sign Up</a>
+        <a class="mx-1 btn btn-outline-primary" href="login.php">Sign In</a>
+        <a class="mx-1 btn btn-outline-primary" href="singup.php">Sign Up</a>
     <?php else: ?>
         <a class="btn btn-outline-primary" href="">Log Out</a>
     <?php endif; ?>

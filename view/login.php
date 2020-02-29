@@ -14,12 +14,12 @@
 </head>
 
 <body class="container text-center vsc-initialized">
-<form class="form-signin" action="">
-    <input type="email" id="inputEmail" class="form-control mb-2" placeholder="Email address" required="" autofocus="">
-    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
+<form class="form-signin" action="" method="post">
+    <input type="text" id="login" name="login" class="form-control mb-2" placeholder="Enter login" autofocus="">
+    <input type="password" id="password" name="password" class="form-control" placeholder="Enter password">
     <a href="#">Forgot password?</a>
-    <button class="btn btn-lg btn-primary btn-block mt-3" type="submit">Sign In</button>
-    <a class="btn btn-lg btn-muted btn-block" href="/singup.php">Sing On</a>
+    <input class="btn btn-lg btn-primary btn-block my-3" type="submit" value="Sign In">
+    <input class="btn btn-lg btn-muted btn-block my-3" type="submit" href="?page=singup" value="Sing Up">
 </form>
 
 </body>

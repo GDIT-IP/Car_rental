@@ -4,10 +4,10 @@
         <a class="p-2 text-dark" href="#">Our cars</a>
         <a class="p-2 text-dark" href="#">Support</a>
     </nav>
-    <?php if (!isset($_COOKIE['user'])): ?>
+    <?php if (isset($_SESSION['user'])): ?>
+        <a class="btn btn-outline-primary" href="/?page=logout">Log Out</a>
+    <?php else: ?>
         <a class="mx-1 btn btn-outline-primary" href="/?page=login">Sign In</a>
         <a class="mx-1 btn btn-outline-primary" href="/?page=singup">Sign Up</a>
-    <?php else: ?>
-        <a class="btn btn-outline-primary" href="">Log Out</a>
     <?php endif; ?>
 </div>

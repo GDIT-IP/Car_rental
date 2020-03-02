@@ -5,9 +5,9 @@
         <a class="p-2 text-dark" href="#">Support</a>
     </nav>
     <?php if (isset($_SESSION['user'])): ?>
-        <a class="btn btn-outline-primary" href="/?page=logout">Log Out</a>
+        <a class="btn btn-outline-primary" href="?page=logout">Log Out</a>
     <?php else: ?>
-        <a class="mx-1 btn btn-outline-primary" href="/?page=login">Sign In</a>
-        <a class="mx-1 btn btn-outline-primary" href="/?page=signup">Sign Up</a>
+        <a class="mx-1 btn btn-outline-primary" href="?page=login">Sign In</a>
+        <a class="mx-1 btn btn-outline-primary" href="?page=signup">Sign Up</a>
     <?php endif; ?>
 </div>

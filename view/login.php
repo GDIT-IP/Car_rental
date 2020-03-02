@@ -19,7 +19,7 @@
     <input type="password" id="password" name="password" class="form-control" placeholder="Enter password">
     <a href="#">Forgot password?</a>
     <input class="btn btn-lg btn-primary btn-block my-3" type="submit" value="Sign In">
-    <input class="btn btn-lg btn-muted btn-block my-3" type="submit" href="?page=singup" value="Sing Up">
+    <input class="btn btn-lg btn-muted btn-block my-3" type="submit" href="?page=signup" value="Sign Up">
 </form>
 
 </body>

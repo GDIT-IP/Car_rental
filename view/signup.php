@@ -48,5 +48,5 @@
     </form>
 </div>
 </body>
-<script src="../js/validations/singup.js"></script>
+<script src="../js/validations/signup.js"></script>
 </html>

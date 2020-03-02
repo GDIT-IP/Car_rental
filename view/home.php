@@ -27,7 +27,7 @@
                 ?>
                 <div class="card mb-4 shadow-sm">
                     <div class="card-header">
-                        <h4 class="my-0 font-weight-normal">$brand $model</h4>
+                        <h4 class="my-0 font-weight-normal">$year $brand $model</h4>
                     </div>
                     <img class="img-fluid" src="img/car_<?php echo($i + 1) ?>.jpg" alt="">
                     <div class="card-body">

@@ -1,19 +1,4 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <!-- Bootstrap -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <title>Car rental</title>
-    <!-- Custom styles -->
-    <link href="../css/registration.css" rel="stylesheet">
-    <title>Document</title>
-</head>
-<body>
+
 <div class="container mt-6">
     <h1>Create new account</h1>
     <form action="../check_reg.php" method="POST">
@@ -46,7 +31,6 @@
                oninput="validateValue(this)"><br>
         <button type="submit" class="btn btn-success">Create account</button>
     </form>
+    <script src="../js/validations/signup.js"></script>
 </div>
-</body>
-<script src="../js/validations/signup.js"></script>
-</html>
+

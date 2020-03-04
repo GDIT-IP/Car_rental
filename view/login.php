@@ -1,3 +1,4 @@
+<!-- Center after moving footer to the bottom -->
 <div class="container">
     <div class="d-flex justify-content-center">
         <form class="col-md-7 col-lg-4" action="" method="post">

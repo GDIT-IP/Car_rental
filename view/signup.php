@@ -1,4 +1,3 @@
-
 <div class="container mt-6">
     <h1>Create new account</h1>
     <form action="../check_reg.php" method="POST">

@@ -9,17 +9,17 @@
         </tr>
         </thead>
         <tbody>
-        <?php foreach ($users as $user):?>
-        <tr>
-            <th scope="row"><?php echo $user->getId();?></th>
-            <td><?php echo $user->getLogin();?></td>
-            <td><?php echo $user->getRole();?></td>
-            <td>
-                <a class="btn btn-outline-success" href="#">Edit</a>
-                <a class="btn btn-outline-danger" href="#">Delete</a>
-            </td>
-        </tr>
-        <?php endforeach;?>
+        <?php foreach ($users as $user): ?>
+            <tr>
+                <th scope="row"><?= $user->getId() ?></th>
+                <td><?= $user->getLogin() ?></td>
+                <td><?= $user->getRole() ?></td>
+                <td>
+                    <a class="btn btn-outline-success" href="#">Edit</a>
+                    <a class="btn btn-outline-danger" href="#">Delete</a>
+                </td>
+            </tr>
+        <?php endforeach; ?>
         </tbody>
     </table>
 </div>

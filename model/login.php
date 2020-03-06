@@ -1,5 +1,4 @@
 <?php
-require_once 'User.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // username and password sent from form
@@ -20,8 +19,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $user->setLogin($row['login']);
     $_SESSION['user'] = $user;
 
-    if ($user->getRole() == 1) {
-        header("location: /?page=adminPanel");
+    if (strcasecmp($user->getRole(), 'Administrator') == 0) {
+        header("location: /?page=managerPanel");
     } else {
         header("location: /");
     }

@@ -1,9 +1,12 @@
 <?php
-session_start();
+
 const DS = DIRECTORY_SEPARATOR;
 defined('APPLICATION_PATH') || define('APPLICATION_PATH', realpath(dirname(__FILE__) . "."));
 
-require APPLICATION_PATH . DS . 'config' . DS . 'config.php';
+require_once APPLICATION_PATH . DS . 'config' . DS . 'config.php';
+
+require_once $config['MODEL_PATH'] . 'User.php';
+session_start();
 
 $page = get('page');
 $model = $config['MODEL_PATH'] . $page . '.php';

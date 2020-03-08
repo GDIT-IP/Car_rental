@@ -19,7 +19,7 @@
             <h5>About</h5>
             <ul class="list-unstyled text-small">
                 <li><a class="text-muted" href="#">Team</a></li>
-                <li><a class="text-muted" href="#">Terms</a></li> 
+                <li><a class="text-muted" href="#">Terms</a></li>
             </ul>
         </div>
     </div>

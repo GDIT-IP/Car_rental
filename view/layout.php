@@ -14,7 +14,6 @@
 </head>
 <body>
 <!-- Header -->
-
 <?php include 'header.php' ?>
 
 <!-- Content -->

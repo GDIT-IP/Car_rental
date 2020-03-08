@@ -11,7 +11,7 @@
                     <div class="card-header">
                         <h4 class="my-0 font-weight-normal">$year $brand $model</h4>
                     </div>
-                    <img class="img-fluid" src="img/car_<?php echo($i + 1) ?>.jpg" alt="">
+                    <img class="img-fluid" src="img/car_<?= ($i + 1) ?>.jpg" alt="">
                     <div class="card-body">
                         <h1 class="card-title pricing-card-title">$price <small class="text-muted">/ day</small></h1>
                         <ul class="list-unstyled mt-3 mb-4">

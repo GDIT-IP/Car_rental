@@ -8,7 +8,6 @@
             <div class = "container" id ="sign-up-container">
                 <a href="?page=signup" id = "sign-up">Sign Up</a>
             </div>
-            <!-- <input class="btn btn-lg btn-muted btn-block my-3" type="button" href="?page=signup" value="Sign Up"> -->
         </form>
     </div>
 </div>

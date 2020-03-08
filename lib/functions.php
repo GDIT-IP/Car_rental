@@ -7,7 +7,7 @@ function get($url)
     return isset($_REQUEST[$url]) ? $_REQUEST[$url] : 'home';
 }
 
-function isUserAuthorized()
+function isManagment()
 {
     $authorized = ['Administrator', 'Staff'];
     if (!isset($_SESSION['user'])) {
@@ -18,42 +18,14 @@ function isUserAuthorized()
     return in_array($role, $authorized, true);
 }
 
-function getUser($login, $password)
+function isAdmin()
 {
-    $conn = new mysqli(DB_SERVER_NAME, DB_USER, DB_PASS, DB_NAME);
-    $query = "SELECT u.id, u.login, r.role 
-                FROM users as u 
-                JOIN roles as r
-                WHERE login = ? and password = ? and u.role = r.id";
-    $stmt = $conn->prepare($query);
-    $stmt->bind_param('ss', $login, $password);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    $conn->close();
-    return $result;
-}
-
-function getUsersData()
-{
-    $conn = new mysqli(DB_SERVER_NAME, DB_USER, DB_PASS, DB_NAME);
-    $query = "SELECT u.id, u.login, r.role
-                FROM users as u
-                JOIN roles as r
-                WHERE u.role = r.id
-                ORDER BY u.id";
-    $stmt = $conn->prepare($query);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    $conn->close();
-    $users = [];
-    while ($row = $result->fetch_assoc()) {
-        $user = new User();
-        $user->setId($row['id']);
-        $user->setLogin($row['login']);
-        $user->setRole($row['role']);
-        $users[] = $user;
+    if (!isset($_SESSION['user'])) {
+        return false;
     }
-    return $users;
+    $user = $_SESSION['user'];
+    $role = $user->getRole();
+    return (strcasecmp($user->getRole(), 'Administrator') == 0);
 }
 
 function createNavbarLink($text, $href = "/")

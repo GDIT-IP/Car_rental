@@ -45,6 +45,8 @@ INSERT INTO users(login, password, role, email, phone_number)
 VALUES ('333', '333', 3, 'yib00005xs@aspire2student.ac.nz', '3434');
 INSERT INTO users(login, password, role, email, phone_number)
 VALUES ('444', '444', 3, 'yib00005wj@aspire2student.ac.nz', '5555');
+INSERT INTO users(login, password, role, email, phone_number, first_name, last_name, enabled)
+VALUES ('555', '555', 1, 'myEmail', '89772707243', 'Bruce', 'Wayne', false);
 
 -- Cars' body types
 

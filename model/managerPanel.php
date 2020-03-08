@@ -1,7 +1,7 @@
 <?php
 $users = getUsersData();
 
-if (isUserAuthorized()) {
+if (isManagment()) {
     $currentUser = $_SESSION['user'];
 } else {
     header('location: /');
@@ -9,7 +9,7 @@ if (isUserAuthorized()) {
 
 $isCarsActive = '';
 $carsTabClasses = '';
-if (strcasecmp($currentUser->getRole(), 'Administrator') != 0) {
+if (!isAdmin()) {
     $isCarsActive = 'active';
     $carsTabClasses = 'show active';
 }

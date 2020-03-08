@@ -3,7 +3,7 @@
     <form action="../check_reg.php" method="POST">
         <div class="row">
             <span class="mr-2">*</span>
-            <input type="text" class="col form-control" name="login" id="login" placeholder="Enter login"
+            <input type="text" class="col form-control" name="login" id="login" placeholder="Enter user name"
                    onfocusout="checkLogin()">
             <label class="col" id="loginWarning" required=""></label>
         </div>

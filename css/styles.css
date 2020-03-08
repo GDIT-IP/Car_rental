@@ -6,3 +6,18 @@
 form {
     width: 500px;
 }
+
+.my-container{
+
+    margin: 7% 0% 5% 0%;
+}
+
+#sign-up-container{
+
+    text-align: center;
+}
+#sign-up{
+
+    color:black;
+    font-weight: bold;
+}

@@ -4,26 +4,31 @@
         <div class="row">
             <span class="mr-2">*</span>
             <input type="text" class="col form-control" name="login" id="login" placeholder="Enter user name"
-                   onfocusout="checkLogin()">
+                   onblur="checkLogin()">
             <label class="col" id="loginWarning" required=""></label>
         </div>
         <br>
         <div class="row">
             <span class="mr-2">*</span>
             <input type="password" class="col form-control" name="password" id="password" placeholder="Enter password"
-                   onfocusout="checkPasswordLength()" required="">
+                   oninput="checkPasswordLength()" required="">
             <label class="col" id="passWarning"></label>
         </div>
         <br>
         <div class="row">
             <span class="mr-2">*</span>
             <input type="password" class="col form-control" name="confirm-password" id="confirm-password"
-                   placeholder="Confirm password">
+                   placeholder="Confirm password" oninput = "checkConfirmPassword()">
             <label class="col" id="confirmPassWarning"></label>
         </div>
         <br>
-        <input type="email" class="form-control" name="email" id="email" placeholder="Enter email"
-               oninput="validateValue(this)"><br>
+        <div class="row">
+               <span class="mr-2">*</span>
+               <input type="email" class="col form-control" name="email" id="email" placeholder="Enter email"
+                     oninput="validateValue(this)" onblur = "checkEmail(this)">
+               <label class="col" id="emailWarning"></label>
+        </div>
+        <br>
         <input type="text" class="form-control" name="first-name" id="first-name" placeholder="Enter First name"
                oninput="validateValue(this)"><br>
         <input type="text" class="form-control" name="last-name" id="last-name" placeholder="Enter Last name"

@@ -12,18 +12,18 @@ if(isset($_GET['login'])&& $_GET['login']!=''){
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
-    // Query 
-    $sql = "SELECT login
-                from users
-                where login = " . $login ;
-    
-    $result = $conn->query($sql);
-    // Result in case to find something
+    // Stmt
+    $stmt = $conn->prepare("SELECT login FROM users WHERE login = ?");
+    $stmt->bind_param("s", $login);
+    // Set parameters and execute
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $stmt->close();
+    $conn->close();
+    // Output
     if ($result->num_rows > 0) {
         echo "This user name is being used";
     } 
-
-    $conn->close();
 }
 
 if(isset($_GET['email']) && $_GET['email']!=''){
@@ -35,14 +35,17 @@ if(isset($_GET['email']) && $_GET['email']!=''){
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
-    // Query 
-    $sql = "SELECT email FROM users WHERE email = \"" .$email. "\"" ;
-    $result = $conn->query($sql);
-    // Result in case to find something
+    // Stmt
+    $stmt = $conn->prepare("SELECT email FROM users WHERE email = ?");
+    $stmt->bind_param("s", $email);
+    // Set parameters and execute
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $stmt->close();
+    $conn->close();
+    // Output
     if ($result->num_rows > 0) {
         echo "This email is being used";
     } 
-
-    $conn->close();
 }
 ?>

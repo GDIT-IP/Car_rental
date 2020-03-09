@@ -57,9 +57,9 @@ function checkPasswordLength() {
 }
 
 function checkConfirmPassword(){
-    var password = document.getElementById('password');
-    var confirmPassword = document.getElementById('confirm-password'); 
-    var confirmPassWarning = document.getElementById('confirmPassWarning');
+    const password = document.getElementById('password');
+    const confirmPassword = document.getElementById('confirm-password'); 
+    const confirmPassWarning = document.getElementById('confirmPassWarning');
     if (password.value != confirmPassword.value){
         confirmPassword.classList.add("border-danger");
         confirmPassWarning.innerText = "The confirm password must coincide with password.";

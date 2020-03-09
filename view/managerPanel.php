@@ -31,7 +31,7 @@
                                 <td><?= $user->getLogin() ?></td>
                                 <td><?= $user->getRole() ?></td>
                                 <td>
-                                    <a class="btn btn-outline-success" href="#">Edit</a>
+                                    <a class="btn btn-outline-success" href="/?page=profile&id=<?= $user->getId() ?>">Edit</a>
                                     <a class="btn btn-outline-danger" href="#">Delete</a>
                                 </td>
                             </tr>

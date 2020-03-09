@@ -13,13 +13,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         return;
     }
 
-    $user = new User();
     $row = $result->fetch_assoc();
-    $user->setRole($row['role']);
-    $user->setLogin($row['login']);
+    $user = readUser($row['id']);
     $_SESSION['user'] = $user;
 
-    if (strcasecmp($user->getRole(), 'Administrator') == 0) {
+    if (isAdmin()) {
         header("location: /?page=managerPanel");
     } else {
         header("location: /");

@@ -5,5 +5,6 @@ $config = [
     'LIB_PATH' => APPLICATION_PATH . DS . 'lib' . DS,
 ];
 
-require $config['LIB_PATH'] . 'functions.php';
+require_once $config['LIB_PATH'] . 'functions.php';
+require_once $config['LIB_PATH'] . 'db.php';
 ?>

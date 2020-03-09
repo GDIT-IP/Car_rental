@@ -5,6 +5,11 @@ $navbar = [];
 $navbar[] = createNavbarLink('Our Cars');
 
 // Elements created in this block are available for authorized users
-if (isUserAuthorized()) {
+if (isManagment()) {
     $navbar[] = createNavbarLink('Manager Panel', 'managerPanel');
+}
+
+// Authenticated user can see Profile link
+if (isset($_SESSION['user'])) {
+    $navbar[] = createNavbarLink('Profile', 'profile');
 }

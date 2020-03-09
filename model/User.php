@@ -7,8 +7,10 @@ class User
     Private $password;
     Private $role;
     Private $email;
+    Private $phoneNumber;
     Private $firstName;
     Private $lastName;
+    Private $enabled;
 
     public function getId()
     {
@@ -60,6 +62,16 @@ class User
         $this->email = $email;
     }
 
+    public function getPhoneNumber()
+    {
+        return $this->phoneNumber;
+    }
+
+    public function setPhoneNumber($phoneNumber)
+    {
+        $this->phoneNumber = $phoneNumber;
+    }
+
     public function getFirstName()
     {
         return $this->firstName;
@@ -78,5 +90,15 @@ class User
     public function setLastName($lastName)
     {
         $this->lastName = $lastName;
+    }
+
+    public function getEnabled()
+    {
+        return $this->enabled;
+    }
+
+    public function setEnabled($enabled)
+    {
+        $this->enabled = $enabled;
     }
 }

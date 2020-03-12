@@ -1,3 +1,8 @@
+<div class="row">
+    <div class="col mb-4">
+        <a class="btn btn-primary" href="?page=signup">Add user</a>
+    </div>
+</div>
 <table class="table">
     <thead>
     <tr>

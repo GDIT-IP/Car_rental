@@ -25,7 +25,7 @@ function isAdmin()
     }
     $user = $_SESSION['user'];
     $role = $user->getRole();
-    return (strcasecmp($user->getRole(), 'Administrator') == 0);
+    return (strcasecmp($role, 'Administrator') == 0);
 }
 
 function createNavbarLink($text, $href = "/")
@@ -33,6 +33,11 @@ function createNavbarLink($text, $href = "/")
     $href = ($href == '/') ? $href : '/?page=' . $href;
     $link = "<a class='p-2 text-dark' href='" . $href . "'>" . $text . "</a>";
     return $link;
+}
+
+function getConnection()
+{
+    return new mysqli(DB_SERVER_NAME, DB_USER, DB_PASS, DB_NAME);
 }
 
 function console_log($output, $with_script_tags = true)
@@ -43,4 +48,11 @@ function console_log($output, $with_script_tags = true)
         $js_code = '<script>' . $js_code . '</script>';
     }
     echo $js_code;
+}
+
+function isPostParamNotEmpty($paramName) {
+    if (!isset($_POST[$paramName]) || empty(trim($_POST[$paramName]))){
+        return false;
+    }
+    return true;
 }

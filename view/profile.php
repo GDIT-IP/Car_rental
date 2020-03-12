@@ -20,18 +20,20 @@
             <label class="col-4" for="phone-number">Phone number:</label>
             <input type="text" class="col-8 form-control" id="phone-number" placeholder="<?= $user->getLastName() ?>">
         </div>
-        <?php if (isManagment()): ?>
+        <?php if (isAdmin()): ?>
             <div class="form-group row">
                 <label class="col-4" for="login">Authority:</label>
                 <input type="text" class="col-8 form-control" id="login" placeholder="<?= $user->getRole() ?>">
             </div>
-            <div class="form-group row">
-                <label class="col-4 form-check-label" for="exampleCheck1">Enabled</label>
-                <select class="col-8 form-control" id="exampleCheck1">
-                    <option value='true' <?php echo $user->getEnabled() ? 'selected' : '' ?>>Active</option>
-                    <option value='false' <?php echo $user->getEnabled() ? '' : 'selected' ?>>Disabled</option>
-                </select>
-            </div>
+            <?php if ($_SESSION['user'] != $user): ?>
+                <div class="form-group row">
+                    <label class="col-4 form-check-label" for="exampleCheck1">Enabled</label>
+                    <select class="col-8 form-control" id="exampleCheck1">
+                        <option value='true' <?php echo $user->getEnabled() ? 'selected' : '' ?>>Active</option>
+                        <option value='false' <?php echo $user->getEnabled() ? '' : 'selected' ?>>Disabled</option>
+                    </select>
+                </div>
+            <?php endif; ?>
         <?php endif; ?>
     </form>
 </div>

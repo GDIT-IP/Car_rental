@@ -1,3 +1,8 @@
+<div class="row">
+    <div class="col mb-4">
+        <a class="btn btn-primary" href="?page=signup">Add user</a>
+    </div>
+</div>
 <table class="table">
     <thead>
     <tr>
@@ -15,7 +20,9 @@
             <td><?= $user->getRole() ?></td>
             <td>
                 <a class="btn btn-outline-success" href="/?page=profile&id=<?= $user->getId() ?>">Edit</a>
-                <a class="btn btn-outline-danger" href="#">Delete</a>
+                <?php if ($_SESSION['user']->getLogin() != $user->getLogin()): ?>
+                    <a class="btn btn-outline-danger" href="#">Delete</a>
+                <?php endif; ?>
             </td>
         </tr>
     <?php endforeach; ?>

@@ -84,6 +84,10 @@ INSERT INTO brands(brand) VALUES ('LADA');
 INSERT INTO brands(brand) VALUES ('Bugatti');
 INSERT INTO brands(brand) VALUES ('TATA');
 INSERT INTO brands(brand) VALUES ('BMW');
+INSERT INTO brands(brand) VALUES ('Mercedes-Benz');
+INSERT INTO brands(brand) VALUES ('Honda');
+INSERT INTO brands(brand) VALUES ('Infiniti');
+INSERT INTO brands(brand) VALUES ('Nissan');
 
 -- Cars' models
 
@@ -94,19 +98,43 @@ CREATE TABLE models (
   FOREIGN KEY (brand_id) REFERENCES brands(id)
 );
 
-INSERT INTO models(brand_id, model) VALUES (1, 'Corolla');
-INSERT INTO models(brand_id, model) VALUES (1, 'Corona');
-INSERT INTO models(brand_id, model) VALUES (1, 'Carina');
-INSERT INTO models(brand_id, model) VALUES (2, '2106');
-INSERT INTO models(brand_id, model) VALUES (2, '2107');
-INSERT INTO models(brand_id, model) VALUES (2, '2121');
-INSERT INTO models(brand_id, model) VALUES (3, 'CHIRON');
-INSERT INTO models(brand_id, model) VALUES (3, 'CENTODIECI');
-INSERT INTO models(brand_id, model) VALUES (3, 'VEYRON 16.4');
-INSERT INTO models(brand_id, model) VALUES (4, 'Nexon');
-INSERT INTO models(brand_id, model) VALUES (4, 'Nano');
-INSERT INTO models(brand_id, model) VALUES (5, 'x5');
-INSERT INTO models(brand_id, model) VALUES (5, 'x6');
+INSERT INTO models(brand_id, model) VALUES ((SELECT id FROM brands WHERE brand = 'Toyota'), 'Corolla');
+INSERT INTO models(brand_id, model) VALUES ((SELECT id FROM brands WHERE brand = 'Toyota'), 'Corona');
+INSERT INTO models(brand_id, model) VALUES ((SELECT id FROM brands WHERE brand = 'Toyota'), 'Carina');
+INSERT INTO models(brand_id, model) VALUES ((SELECT id FROM brands WHERE brand = 'Toyota'), 'Yaris');
+INSERT INTO models(brand_id, model) VALUES ((SELECT id FROM brands WHERE brand = 'Toyota'), 'Camry');
+INSERT INTO models(brand_id, model) VALUES ((SELECT id FROM brands WHERE brand = 'Toyota'), 'Supra');
+INSERT INTO models(brand_id, model) VALUES ((SELECT id FROM brands WHERE brand = 'Toyota'), 'Prius');
+INSERT INTO models(brand_id, model) VALUES ((SELECT id FROM brands WHERE brand = 'LADA'), '2106');
+INSERT INTO models(brand_id, model) VALUES ((SELECT id FROM brands WHERE brand = 'LADA'), '2107');
+INSERT INTO models(brand_id, model) VALUES ((SELECT id FROM brands WHERE brand = 'LADA'), '2121');
+INSERT INTO models(brand_id, model) VALUES ((SELECT id FROM brands WHERE brand = 'Bugatti'), 'CHIRON');
+INSERT INTO models(brand_id, model) VALUES ((SELECT id FROM brands WHERE brand = 'Bugatti'), 'CENTODIECI');
+INSERT INTO models(brand_id, model) VALUES ((SELECT id FROM brands WHERE brand = 'Bugatti'), 'VEYRON 16.4');
+INSERT INTO models(brand_id, model) VALUES ((SELECT id FROM brands WHERE brand = 'TATA'), 'Nexon');
+INSERT INTO models(brand_id, model) VALUES ((SELECT id FROM brands WHERE brand = 'TATA'), 'Nano');
+INSERT INTO models(brand_id, model) VALUES ((SELECT id FROM brands WHERE brand = 'Honda'), 'Accord');
+INSERT INTO models(brand_id, model) VALUES ((SELECT id FROM brands WHERE brand = 'Honda'), 'Airwave');
+INSERT INTO models(brand_id, model) VALUES ((SELECT id FROM brands WHERE brand = 'Honda'), 'Ascot');
+INSERT INTO models(brand_id, model) VALUES ((SELECT id FROM brands WHERE brand = 'Honda'), 'Avancier');
+INSERT INTO models(brand_id, model) VALUES ((SELECT id FROM brands WHERE brand = 'Honda'), 'Beat');
+INSERT INTO models(brand_id, model) VALUES ((SELECT id FROM brands WHERE brand = 'Honda'), 'Capa');
+INSERT INTO models(brand_id, model) VALUES ((SELECT id FROM brands WHERE brand = 'Honda'), 'City');
+INSERT INTO models(brand_id, model) VALUES ((SELECT id FROM brands WHERE brand = 'Honda'), 'Civic');
+INSERT INTO models(brand_id, model) VALUES ((SELECT id FROM brands WHERE brand = 'Honda'), 'Concerto');
+INSERT INTO models(brand_id, model) VALUES ((SELECT id FROM brands WHERE brand = 'Honda'), 'CR-V');
+INSERT INTO models(brand_id, model) VALUES ((SELECT id FROM brands WHERE brand = 'Honda'), 'Integra');
+INSERT INTO models(brand_id, model) VALUES ((SELECT id FROM brands WHERE brand = 'BMW'), 'x6');
+INSERT INTO models(brand_id, model) VALUES ((SELECT id FROM brands WHERE brand = 'BMW'), 'x5');
+INSERT INTO models(brand_id, model) VALUES ((SELECT id FROM brands WHERE brand = 'BMW'), 'M3');
+INSERT INTO models(brand_id, model) VALUES ((SELECT id FROM brands WHERE brand = 'BMW'), 'M4');
+INSERT INTO models(brand_id, model) VALUES ((SELECT id FROM brands WHERE brand = 'Nissan'), 'Sunny');
+INSERT INTO models(brand_id, model) VALUES ((SELECT id FROM brands WHERE brand = 'Nissan'), 'Skyline');
+INSERT INTO models(brand_id, model) VALUES ((SELECT id FROM brands WHERE brand = 'Nissan'), 'Pathfinder');
+INSERT INTO models(brand_id, model) VALUES ((SELECT id FROM brands WHERE brand = 'Mercedes-Benz'), 'BR470 X-Class');
+INSERT INTO models(brand_id, model) VALUES ((SELECT id FROM brands WHERE brand = 'Mercedes-Benz'), 'Mercedes-AMG One');
+INSERT INTO models(brand_id, model) VALUES ((SELECT id FROM brands WHERE brand = 'Infiniti'), 'QX60');
+INSERT INTO models(brand_id, model) VALUES ((SELECT id FROM brands WHERE brand = 'Infiniti'), 'M56');
 
 -- Vehicle details
 
@@ -116,6 +144,7 @@ CREATE TABLE vehicle_details (
   model int NOT NULL,
   body_type varchar(255) NOT NULL,
   transmission varchar(255),
+  number_of_doors int NOT NULL,
   FOREIGN KEY (brand) REFERENCES brands(id),
   FOREIGN KEY (model) REFERENCES models(id),
   FOREIGN KEY (body_type) REFERENCES body_types(body_type),
@@ -125,8 +154,7 @@ CREATE TABLE vehicle_details (
 CREATE TABLE cars (
   id int PRIMARY KEY AUTO_INCREMENT,
   year int NOT NULL,
-  number_of_doors int NOT NULL,
-  hour_cent_price int NOT NULL,
+  price_per_day int NOT NULL,
   vehicle_details int NOT NULL,
   FOREIGN KEY (vehicle_details) REFERENCES vehicle_details (id)
 );

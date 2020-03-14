@@ -16,9 +16,9 @@
             </ul>
         </div>
         <div class="col-6 col-md">
-            <h5>About</h5>
+            <h5>Contacts</h5>
             <ul class="list-unstyled text-small">
-                <li><a class="text-muted" href="#">Team</a></li>
+                <li><a class="text-muted" href="/?page=map">We on map</a></li>
             </ul>
         </div>
     </div>

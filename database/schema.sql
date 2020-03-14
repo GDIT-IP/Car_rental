@@ -81,6 +81,7 @@ CREATE TABLE cars (
   year int NOT NULL,
   price_per_day int NOT NULL,
   vehicle_details int NOT NULL,
+  photoLink TEXT(100000) NOT NULL,
   FOREIGN KEY (vehicle_details) REFERENCES vehicle_details (id)
 );
 

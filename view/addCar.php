@@ -1,5 +1,5 @@
 <div class="container">
-    <form action="" method="POST" class="col-10">
+    <form action="" method="POST" class="col-10" enctype="multipart/form-data">
         <div class="form-row">
             <div class="form-group col">
                 <label for="brand">Brand</label>
@@ -39,7 +39,11 @@
             </div>
         </div>
         <div class="form-row">
-            <div class="form-group col-sm-2">
+            <div class="form-group col">
+                <label for="photo">Photo</label>
+                <input type="text" class="form-control" id="photo" name="photo" placeholder="Insert picture link">
+            </div>
+            <div class="form-group col-sm-4">
                 <label for="price">Price</label>
                 <input type="text" class="form-control" id="price" name="price" placeholder="$/day">
             </div>

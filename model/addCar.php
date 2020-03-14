@@ -6,7 +6,7 @@ $bodyTypes = getBodyTypes();
 $transmissions = getTransmissions();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $requiredParameters = ['brand', 'model', 'year', 'body', 'transmission', 'doors', 'price'];
+    $requiredParameters = ['brand', 'model', 'year', 'body', 'transmission', 'doors', 'price', 'photo'];
     $isCarCorrect = true;
     foreach ($requiredParameters as $param) {
         $isCarCorrect = isPostParamNotEmpty($param);
@@ -24,9 +24,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $car->setTransmission($_POST['transmission']);
         $car->setNumberOfDoors($_POST['doors']);
         $car->setPricePerDay($_POST['price']);
+        $car->setPhotoLink($_POST['photo']);
 
         createCar($car);
-    } else {
-        console_log("no");
     }
 }

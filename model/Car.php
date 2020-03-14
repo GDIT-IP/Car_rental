@@ -11,6 +11,7 @@ class Car
     Private $picture;
     Private $numberOfDoors;
     Private $bodyType;
+    Private $photoLink;
 
     public function getId()
     {
@@ -102,4 +103,13 @@ class Car
         $this->bodyType = $bodyType;
     }
 
+    public function getPhotoLink()
+    {
+        return $this->photoLink;
+    }
+
+    public function setPhotoLink($photoLink)
+    {
+        $this->photoLink = $photoLink;
+    }
 }

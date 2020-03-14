@@ -1,3 +1,4 @@
+// This function populates brand and model dropdowns
 window.onload = function () {
     // modelsMap is an object but you can think of it as a lookup table
     var modelsMap = modelsJson,

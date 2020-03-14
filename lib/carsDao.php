@@ -6,7 +6,7 @@ function getCars()
 {
     $conn = getConnection();
     $query = "SELECT
-              c.id, b.brand, m.model, c.price_per_day, c.year, vd.transmission, vd.number_of_doors
+              c.id, b.brand, m.model, c.price_per_day, c.year, vd.transmission, vd.number_of_doors, c.photoLink
               FROM cars as c
               JOIN vehicle_details as vd ON c.vehicle_details = vd.id
               JOIN models as m ON vd.model = m.id
@@ -24,6 +24,7 @@ function getCars()
         $car->setNumberOfDoors($row['number_of_doors']);
         $car->setTransmission($row['transmission']);
         $car->setPricePerDay($row['price_per_day']);
+        $car->setPhotoLink($row['photoLink']);
         $cars[] = $car;
     }
     $conn->close();
@@ -42,12 +43,13 @@ function createCar($car)
     $vehicleId = getVehicleId($car);
     $year = $car->getYear();
     $price = $car->getPricePerDay();
+    $photoLink = $car->getPhotoLink();
 
     $conn = getConnection();
-    $query = "INSERT INTO cars (year, price_per_day, vehicle_details)
-              VALUES(?, ?, ?);";
+    $query = "INSERT INTO cars (year, price_per_day, vehicle_details, photoLink)
+              VALUES(?, ?, ?, ?);";
     $stmt = $conn->prepare($query);
-    $stmt->bind_param('iii', $year, $price, $vehicleId);
+    $stmt->bind_param('iiis', $year, $price, $vehicleId, $photoLink);
     $stmt->execute();
     $conn->close();
 }

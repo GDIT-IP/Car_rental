@@ -66,6 +66,38 @@ function readUser($id)
     return $user;
 }
 
+function validate($method,$table,$variable,$message){
+    if($method == 'GET'){
+        $catcher = $_GET[$variable];
+    }
+    if($method == 'POST'){
+        $catcher = $_POST[$variable];
+    }
+    $conn = getConnection();
+    $query = "SELECT " . $variable ." FROM ". $table ." WHERE ".$variable." = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("s",$catcher);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $stmt->close();
+    $conn->close();
+    // Output
+    if ($result->num_rows > 0) {
+        echo $message;
+    } 
+}
+
+function setUser($login, $password, $role , $email, $fName, $lName,$message){
+    $conn = getConnection();
+    $query = "INSERT INTO users (login, password, role, email, first_name, last_name) VALUES (?,?,?,?,?,?)";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param('ssisss', $login, $password, $role , $email, $fName, $lName);
+    $stmt->execute();
+    $stmt->close();
+    $conn->close();
+    echo $message;
+}
+
 function getConnection()
 {
     return new mysqli(DB_SERVER_NAME, DB_USER, DB_PASS, DB_NAME);

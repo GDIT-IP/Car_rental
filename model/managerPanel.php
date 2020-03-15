@@ -1,5 +1,6 @@
 <?php
-$users = getUsersData();
+$users = getUsers();
+$cars = getCars();
 
 if (isManagment()) {
     $currentUser = $_SESSION['user'];

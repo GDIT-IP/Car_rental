@@ -16,10 +16,6 @@
             <label class="col-4" for="email">Email:</label>
             <input type="text" class="col-8 form-control" id="email" placeholder="<?= $user->getEmail() ?>">
         </div>
-        <div class="form-group row">
-            <label class="col-4" for="phone-number">Phone number:</label>
-            <input type="text" class="col-8 form-control" id="phone-number" placeholder="<?= $user->getLastName() ?>">
-        </div>
         <?php if (isAdmin()): ?>
             <div class="form-group row">
                 <label class="col-4" for="login">Authority:</label>

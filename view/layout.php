@@ -14,9 +14,7 @@
 </head>
 <body>
 <!-- Header -->
-<?php if ($page != 'login') {
-    include 'header.php';
-} ?>
+<?php include 'header.php' ?>
 
 <!-- Content -->
 <?php include $content ?>

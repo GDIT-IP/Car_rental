@@ -87,7 +87,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // DB INSER INTO
     if(empty($loginErr) && empty($passErr) && empty($conPassErr) && empty($emailErr) 
         && empty($lNameErr) && empty($fNameErr)){
-        setUser($login, $password, $role , $email, $fName, $lName,'You have created your account succesfully');
+        createUser($login, $password, $role , $email, $fName, $lName,'You have created your account succesfully');
     }
 }
 ?>

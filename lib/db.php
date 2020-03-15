@@ -44,12 +44,12 @@ function readUser($id)
 {
     $conn = getConnection();
     $query = "SELECT
-              u.id, u.login, u.email, u.phone_number, u.first_name, u.last_name, u.enabled, r.role
+              u.id, u.login, u.email, u.first_name, u.last_name, u.enabled, r.role
               FROM users as u 
               JOIN roles as r ON u.role = r.id 
               WHERE u.id = ?;";
     $stmt = $conn->prepare($query);
-    $stmt->bind_param('d', $id);
+    $stmt->bind_param('i', $id);
     $stmt->execute();
     $queryResult = $stmt->get_result();
     $user = new User();
@@ -58,7 +58,6 @@ function readUser($id)
         $user->setLogin($row['login']);
         $user->setRole($row['role']);
         $user->setEmail($row['email']);
-        $user->setPhoneNumber($row['phone_number']);
         $user->setFirstName($row['first_name']);
         $user->setLastName($row['last_name']);
         $user->setEnabled($row['enabled']);
@@ -88,7 +87,7 @@ function validate($method,$table,$variable,$message){
     } 
 }
 
-function setUser($login, $password, $role , $email, $fName, $lName,$message){
+function createUser($login, $password, $role , $email, $fName, $lName,$message){
     $conn = getConnection();
     $query = "INSERT INTO users (login, password, role, email, first_name, last_name) VALUES (?,?,?,?,?,?)";
     $stmt = $conn->prepare($query);
@@ -99,7 +98,4 @@ function setUser($login, $password, $role , $email, $fName, $lName,$message){
     echo $message;
 }
 
-function getConnection()
-{
-    return new mysqli(DB_SERVER_NAME, DB_USER, DB_PASS, DB_NAME);
-}
+

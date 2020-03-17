@@ -7,7 +7,6 @@ class User
     Private $password;
     Private $role;
     Private $email;
-    Private $phoneNumber;
     Private $firstName;
     Private $lastName;
     Private $enabled;
@@ -60,16 +59,6 @@ class User
     public function setEmail($email)
     {
         $this->email = $email;
-    }
-
-    public function getPhoneNumber()
-    {
-        return $this->phoneNumber;
-    }
-
-    public function setPhoneNumber($phoneNumber)
-    {
-        $this->phoneNumber = $phoneNumber;
     }
 
     public function getFirstName()

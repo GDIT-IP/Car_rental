@@ -4,21 +4,20 @@ INSERT INTO roles(role) VALUES ('Staff');
 INSERT INTO roles(role) VALUES ('Customer');
 
 -- Users
-INSERT INTO users(login, password, role, email, phone_number)
-VALUES ('111', '111', (SELECT id FROM roles WHERE role = 'Administrator'), 'yib00005w5@aspire2student.ac.nz',
-        '223322223322');
-INSERT INTO users(login, password, role, email, phone_number)
-VALUES ('222', '222', (SELECT id FROM roles WHERE role = 'Staff'), 'yib00005vj@aspire2student.ac.nz', '332233332233');
-INSERT INTO users(login, password, role, email, phone_number)
-VALUES ('333', '333', (SELECT id FROM roles WHERE role = 'Customer'), 'yib00005xs@aspire2student.ac.nz', '3434');
-INSERT INTO users(login, password, role, email, phone_number)
-VALUES ('444', '444', (SELECT id FROM roles WHERE role = 'Customer'), 'yib00005wj@aspire2student.ac.nz', '5555');
-INSERT INTO users(login, password, role, email, phone_number, first_name, last_name, enabled)
-VALUES ('555', '555', (SELECT id FROM roles WHERE role = 'Administrator'), 'myEmail', '89772707243', 'Bruce', 'Wayne',
+INSERT INTO users(login, password, role, email)
+VALUES ('111', '111', (SELECT id FROM roles WHERE role = 'Administrator'), 'yib00005w5@aspire2student.ac.nz');
+INSERT INTO users(login, password, role, email)
+VALUES ('222', '222', (SELECT id FROM roles WHERE role = 'Staff'), 'yib00005vj@aspire2student.ac.nz');
+INSERT INTO users(login, password, role, email)
+VALUES ('333', '333', (SELECT id FROM roles WHERE role = 'Customer'), 'yib00005xs@aspire2student.ac.nz');
+INSERT INTO users(login, password, role, email)
+VALUES ('444', '444', (SELECT id FROM roles WHERE role = 'Customer'), 'yib00005wj@aspire2student.ac.nz');
+INSERT INTO users(login, password, role, email, first_name, last_name, enabled)
+VALUES ('555', '555', (SELECT id FROM roles WHERE role = 'Administrator'), 'myEmail', 'Bruce', 'Wayne',
         false);
 
 -- Body types
-INSERT INTO body_types(body_type) VALUES ('CUV');
+INSERT INTO body_types(body_type) VALUES ('SUV');
 INSERT INTO body_types(body_type) VALUES ('SEDAN');
 INSERT INTO body_types(body_type) VALUES ('HATCHBACK');
 INSERT INTO body_types(body_type) VALUES ('UNIVERSAL');

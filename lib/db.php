@@ -17,7 +17,7 @@ function getUser($login, $password)
     return $result;
 }
 
-function getUsers()
+function getUsers($amount = 0, $offset = 0)
 {
     $conn = getConnection();
     $query = "SELECT u.id, u.login, r.role
@@ -25,6 +25,12 @@ function getUsers()
               JOIN roles as r
               WHERE u.role = r.id
               ORDER BY u.id";
+    if ($amount > 0) {
+        $query .= " LIMIT " . $amount;
+        if ($offset > 0) {
+            $query .= " OFFSET " . $offset;
+        }
+    }
     $stmt = $conn->prepare($query);
     $stmt->execute();
     $queryResult = $stmt->get_result();
@@ -38,6 +44,22 @@ function getUsers()
     }
     $conn->close();
     return $users;
+}
+
+function countUsers()
+{
+    $conn = getConnection();
+    $query = "SELECT COUNT(*) amount FROM users";
+
+    $stmt = $conn->prepare($query);
+    $stmt->execute();
+    $queryResult = $stmt->get_result();
+    $amount = 0;
+    while ($row = $queryResult->fetch_assoc()) {
+        $amount = intval($row['amount']);
+    }
+    $conn->close();
+    return $amount;
 }
 
 function readUser($id)
@@ -66,17 +88,18 @@ function readUser($id)
     return $user;
 }
 
-function validate($method,$table,$variable,$message){
-    if($method == 'GET'){
+function validate($method, $table, $variable, $message)
+{
+    if ($method == 'GET') {
         $catcher = $_GET[$variable];
     }
-    if($method == 'POST'){
+    if ($method == 'POST') {
         $catcher = $_POST[$variable];
     }
     $conn = getConnection();
-    $query = "SELECT " . $variable ." FROM ". $table ." WHERE ".$variable." = ?";
+    $query = "SELECT " . $variable . " FROM " . $table . " WHERE " . $variable . " = ?";
     $stmt = $conn->prepare($query);
-    $stmt->bind_param("s",$catcher);
+    $stmt->bind_param("s", $catcher);
     $stmt->execute();
     $result = $stmt->get_result();
     $stmt->close();
@@ -84,14 +107,15 @@ function validate($method,$table,$variable,$message){
     // Output
     if ($result->num_rows > 0) {
         echo $message;
-    } 
+    }
 }
 
-function createUser($login, $password, $role , $email, $fName, $lName,$message){
+function createUser($login, $password, $role, $email, $fName, $lName, $message)
+{
     $conn = getConnection();
     $query = "INSERT INTO users (login, password, role, email, first_name, last_name) VALUES (?,?,?,?,?,?)";
     $stmt = $conn->prepare($query);
-    $stmt->bind_param('ssisss', $login, $password, $role , $email, $fName, $lName);
+    $stmt->bind_param('ssisss', $login, $password, $role, $email, $fName, $lName);
     $stmt->execute();
     $stmt->close();
     $conn->close();

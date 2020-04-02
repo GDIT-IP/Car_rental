@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $row = $result->fetch_assoc();
     $user = readUser($row['id']);
-    $_SESSION['user'] = $user;
+    $_SESSION['user'] = serialize($user);
 
     if (isAdmin()) {
         header("location: /?page=managerPanel");

@@ -35,5 +35,5 @@
     </div>
     <!-- Captcha -->
     <script src='https://www.google.com/recaptcha/api.js'></script>
-    <script src="../js/login.js"></script>
+    <script src="./js/login.js"></script>
 </div>

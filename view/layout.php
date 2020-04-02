@@ -11,8 +11,6 @@
     <title>Car rental</title>
     <!-- Custom styles -->
     <link href="css/styles.css" rel="stylesheet">
-    <!-- Captcha -->
-    <script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
 <body>
 <!-- Header -->

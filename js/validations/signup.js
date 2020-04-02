@@ -6,7 +6,7 @@ let isEmailValid = false;
 let isFormValid = false;
 let map = new Map();
 map.set("email", /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/);
-map.set("text", /^[^\W\d]+$/);
+map.set("text", /^[a-zA-Z ]+$/);
 submitButton.disabled = true;
 
 function checkLogin() {

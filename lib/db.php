@@ -37,3 +37,37 @@ function validate($method, $table, $variable, $message)
         echo $message;
     }
 }
+
+function getEmail($login)
+{
+    $conn = getConnection();
+    $query = "SELECT email FROM users WHERE login = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("s", $login);
+    $stmt->execute();
+    $result = $stmt->bind_result($email);
+    echo $result;
+    $stmt->close();
+    $conn->close();
+    // Output
+    if ($result != '') {
+        return $result;
+    }
+}
+
+function getPassword($login)
+{
+    $conn = getConnection();
+    $query = "SELECT " . 'password' . " FROM " . 'users' . " WHERE " . 'login' . " = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("s", $login);
+    $stmt->execute();
+    $stmt->bind_result($password);
+    $result = $password;
+    $stmt->close();
+    $conn->close();
+    // Output
+    if ($result->num_rows > 0) {
+        return $result;
+    }
+}

@@ -8,4 +8,5 @@ $config = [
 require_once $config['LIB_PATH'] . 'functions.php';
 require_once $config['LIB_PATH'] . 'db.php';
 require_once $config['LIB_PATH'] . 'carsDao.php';
+require_once $config['LIB_PATH'] . 'userDao.php';
 ?>

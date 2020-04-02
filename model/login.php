@@ -1,6 +1,7 @@
 <?php
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+<<<<<<< HEAD
     // Captcha
     function post_captcha($user_response) {
         $fields_string = '';
@@ -22,6 +23,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         curl_close($ch);
 
         return json_decode($result, true);
+=======
+    // username and password sent from form
+    $login = $_POST['login'];
+    $password = $_POST['password'];
+    $result = getUser($login, $password);
+
+    // The result must contain only one row
+    if ($result->num_rows != 1) {
+        $error = "Your Login Name or Password is invalid";
+        return;
+>>>>>>> master
     }
 
     // Call the function post_captcha

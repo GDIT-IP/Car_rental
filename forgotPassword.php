@@ -21,9 +21,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $login = $_POST['login'];
     if (getEmail($login) != ''){
       $email = getEmail($login);
-      echo $email;
+      // echo $email;
       $password = getPassword($login);
-      echo $password;
+      // echo $password;
       try {
         //Server settings
         // $mail->SMTPDebug = 1;                      // Enable verbose debug output

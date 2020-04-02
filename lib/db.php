@@ -45,13 +45,16 @@ function getEmail($login)
     $stmt = $conn->prepare($query);
     $stmt->bind_param("s", $login);
     $stmt->execute();
-    $result = $stmt->bind_result($email);
-    echo $result;
+    $result = $stmt->get_result();
+    $email = '';
+    while ($row = $result->fetch_assoc()) {
+        $email = $row['email'];
+    }
     $stmt->close();
     $conn->close();
     // Output
-    if ($result != '') {
-        return $result;
+    if ($email != '') {
+        return $email;
     }
 }
 
@@ -62,12 +65,15 @@ function getPassword($login)
     $stmt = $conn->prepare($query);
     $stmt->bind_param("s", $login);
     $stmt->execute();
-    $stmt->bind_result($password);
-    $result = $password;
+    $result = $stmt->get_result();
+    $password = '';
+    while ($row = $result->fetch_assoc()) {
+        $password = $row['password'];
+    }
     $stmt->close();
     $conn->close();
     // Output
     if ($result->num_rows > 0) {
-        return $result;
+        return $password;
     }
 }

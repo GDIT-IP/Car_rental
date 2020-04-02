@@ -11,5 +11,5 @@ if (isset($_GET['id']) && trim($_GET['id'])){
     $id = $_GET['id'];
     $user = readUser($id);
 } else {
-    $user = $_SESSION['user'];
+    $user = unserialize($_SESSION['user']);
 }

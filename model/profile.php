@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $lastName = empty(trim($_POST['last-name'])) ? $user->getLastName() : trim($_POST['last-name']);
     $email = empty(trim($_POST['email'])) ? $user->getEmail() : trim($_POST['email']);
     $role = empty(trim($_POST['role'])) ? $user->getRole() : trim($_POST['role']);
-    $enabled = empty(trim($_POST['is-active'])) ? $user->getEnabled() : trim($_POST['is-active']);
+    $enabled =filter_var($_POST['is-active'], FILTER_VALIDATE_BOOLEAN);
 
     // Set new data
     $updatedUser = new User();

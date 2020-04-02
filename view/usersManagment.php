@@ -32,7 +32,7 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="deleteUserModalTitle">Delete Post</h5>
+                <h5 class="modal-title" id="deleteUserModalTitle">Delete User</h5>
                 <button type="button" class="close" data-dismiss="modal">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -44,7 +44,7 @@
                         <p>Are you sure you want to delete user <b><span id="user-login"></span></b>
                             with role <b><span id="user-role"></span></b> ?</p>
                         <p>There is no undo for this</p>
-                        <input type="submit" class="btn btn-danger" name="deletePost" value="Delete"/>
+                        <input type="submit" class="btn btn-danger" value="Delete"/>
                         <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
                     </form>
                 </div>

@@ -21,7 +21,7 @@
                         </ul>
                         <div class="row d-flex justify-content-center">
                             <div class="btn-group col-6">
-                                <a type="button" class="btn btn-sm btn-outline-success" href="?page=rentRequest">Rent</a>
+                                <a type="button" class="btn btn-sm btn-outline-success" href="?page=rentRequest&id=<?= $car->getId() ?>">Rent</a>
                             </div>
                         </div>
                     </div>

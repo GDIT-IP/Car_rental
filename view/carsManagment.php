@@ -24,9 +24,36 @@
             <td><?= $car->getYear() ?></td>
             <td>
                 <a class="btn btn-outline-success" href="/?page=carInfo&id=<?= $car->getId() ?>">Edit</a>
-                <a class="btn btn-outline-danger" href="#">Delete</a>
+                <button type="button" class="btn btn-outline-danger mx-3" data-id="<?= $car->getId() ?>"
+                        data-toggle="modal" data-target="#deleteCarModal" onclick="">Delete</button>
             </td>
         </tr>
     <?php endforeach; ?>
     </tbody>
 </table>
+
+<div class="modal fade" id="deleteCarModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteCarModalTitle">Delete Car</h5>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <form method="POST" action="./deleteCar.php">
+                        <input type="hidden" id="carToDeleteId" name="carId" value=""/>
+                        <p>Are you sure you want to delete car <b><span id="car-id"></span></b>
+                        <p>There is no undo for this</p>
+                        <input type="submit" class="btn btn-danger" value="Delete"/>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="./js/carsManagement.js"></script>

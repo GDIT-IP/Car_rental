@@ -8,7 +8,6 @@ class Car
     Private $year;
     Private $transmission;
     Private $pricePerDay;
-    Private $picture;
     Private $numberOfDoors;
     Private $bodyType;
     Private $photoLink;
@@ -71,16 +70,6 @@ class Car
     public function setTransmission($transmission)
     {
         $this->transmission = $transmission;
-    }
-
-    public function getPicture()
-    {
-        return $this->picture;
-    }
-
-    public function setPicture($picture)
-    {
-        $this->picture = $picture;
     }
 
     public function getNumberOfDoors()

@@ -28,5 +28,5 @@ Do not forget to insert google API key
         });
     }
 </script async defer>
-<script src="https://maps.googleapis.com/maps/api/js?key=API_KEY&callback=initMap" async
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8Xjdl0Ra5k-KEjUdi5iZfD7Wx9779Lp8&callback=initMap" async
         defer></script>

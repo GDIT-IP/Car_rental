@@ -26,3 +26,9 @@ if (!isAdmin()) {
     $isCarsActive = 'active';
     $carsTabClasses = 'show active';
 }
+
+/**
+ * requests
+ */
+
+$bookingRequests = listBookings();

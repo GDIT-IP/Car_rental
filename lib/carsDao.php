@@ -91,8 +91,6 @@ function updateCar($car)
 
 function createCar($car)
 {
-    $flag = false;
-
     $vehicleId = getBodyDetailsId($car);
     $year = $car->getYear();
     $price = $car->getPricePerDay();

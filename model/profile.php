@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $lastName = empty(trim($_POST['last-name'])) ? $car->getLastName() : trim($_POST['last-name']);
     $email = empty(trim($_POST['email'])) ? $car->getEmail() : trim($_POST['email']);
     $role = empty($_POST['role']) ? $car->getRole() : trim($_POST['role']);
-    if (!empty($_POST['is-active'])) {
+    if (isset($_POST['is-active'])) {
         $enabled = filter_var($_POST['is-active'], FILTER_VALIDATE_BOOLEAN);
     } else {
         $enabled = $car->getEnabled();
@@ -68,6 +68,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['user'] = serialize(readUser($id));
         }
         header("location: " . $currentLocation);
-        exit;
+//        exit;
     }
 }

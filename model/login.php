@@ -9,7 +9,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // The result must contain only one row
     if ($result->num_rows != 1) {
         $error = "Your Login Name or Password is invalid";
-        console_log($error);
         return;
     }
 

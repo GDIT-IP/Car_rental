@@ -43,7 +43,7 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <button class="btn btn btn-success col-3">Book</button>
+                    <button class="btn btn btn-success">Request booking</button>
                 </div>
             </div>
         </div>

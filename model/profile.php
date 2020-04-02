@@ -18,6 +18,7 @@ if (isset($_GET['id']) && trim($_GET['id'])) {
 $roles = getRoles();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $id = $user->getId();
     $login = $user->getLogin();
     //Password in db
     $password = $user->getPassword();
@@ -29,8 +30,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $firstName = empty(trim($_POST['first-name'])) ? $user->getFirstName() : trim($_POST['first-name']);
     $lastName = empty(trim($_POST['last-name'])) ? $user->getLastName() : trim($_POST['last-name']);
     $email = empty(trim($_POST['email'])) ? $user->getEmail() : trim($_POST['email']);
-    $role = empty(trim($_POST['role'])) ? $user->getRole() : trim($_POST['role']);
-    $enabled =filter_var($_POST['is-active'], FILTER_VALIDATE_BOOLEAN);
+    $role = empty($_POST['role']) ? $user->getRole() : trim($_POST['role']);
+    if (!empty($_POST['is-active'])) {
+        $enabled = filter_var($_POST['is-active'], FILTER_VALIDATE_BOOLEAN);
+    } else {
+        $enabled = $user->getEnabled();
+    }
 
     // Set new data
     $updatedUser = new User();

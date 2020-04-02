@@ -107,6 +107,26 @@ function createCar($car)
     $conn->close();
 }
 
+function deleteCar($id) {
+    $flag = false;
+
+    $sql = "DELETE FROM cars WHERE id = ?";
+
+    $con = getConnection();
+    $stmt = $con->prepare($sql);
+    $stmt->bind_param("i", $id);
+
+    if ($stmt->execute()) {
+        $flag = true;
+    } else {
+        echo "carDao deleteCar(postId): couldn't execute sql: " . $sql . " error: " . $con->error;
+        exit();
+    }
+    $stmt->close();
+    $con->close();
+    return $flag;
+}
+
 function getBodyDetailsId($car)
 {
     createVehicle($car);

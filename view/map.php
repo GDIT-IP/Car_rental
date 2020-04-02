@@ -1,24 +1,32 @@
-<div>
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d355.56583112388415!2d174.76348115971078!3d-36.84552094479674!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6d0d47fa1261418d%3A0xb72b284a26b2b646!2sAspire2!5e0!3m2!1sen!2snz!4v1584151001279!5m2!1sen!2snz"
-            width="100%" height="400" frameborder="0" style="border:0;" allowfullscreen="true"
-            tabindex="0"></iframe>
-</div>
-
 <!--
-Unfortunately google map is no longer free
-But you can register your own card, put in your google API key and enjoy the map
-Do not forget to uncomment code below this comment and comment the ones above
+Do not forget to insert google API key
 -->
 
-<!--<div  id="map"></div>-->
-<!--<script>-->
-<!--    var map;-->
-<!--    function initMap() {-->
-<!--        map = new google.maps.Map(document.getElementById('map'), {-->
-<!--            center: {lat: -36.786, lng: 174.855},-->
-<!--            zoom: 12-->
-<!--        });-->
-<!--    }-->
-<!--</script>-->
-<!--<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async-->
-<!--        defer></script>-->
+<div  id="map" style="height: 30em;"></div>
+<script>
+    function initMap() {
+        let element = document.getElementById('map');
+        let options = {
+            center: {lat: -36.845298, lng: 174.764637},
+            zoom: 16,
+        };
+
+        let myMap = new google.maps.Map(element, options);
+
+        let marker = new google.maps.Marker({
+            position: {lat: -36.845298, lng: 174.764637},
+            title: 'Rent with us',
+            map: myMap
+        });
+
+        let video = new google.maps.InfoWindow({
+            content: '<iframe width="500px" height="300px" src="https://www.youtube.com/embed/CObPyy6UsL0" frameborder="0"></iframe>'
+        });
+
+        google.maps.event.addListener(marker, 'click', function initialize() {
+            video.open(myMap, marker);
+        });
+    }
+</script async defer>
+<script src="https://maps.googleapis.com/maps/api/js?key=API_KEY&callback=initMap" async
+        defer></script>

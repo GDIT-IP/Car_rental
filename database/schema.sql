@@ -3,6 +3,7 @@
 DROP TABLE IF EXISTS booking;
 DROP TABLE IF EXISTS cars;
 DROP TABLE IF EXISTS vehicle_details;
+DROP TABLE IF EXISTS body_details;
 DROP TABLE IF EXISTS models;
 DROP TABLE IF EXISTS brands;
 DROP TABLE IF EXISTS body_types;
@@ -35,20 +36,20 @@ CREATE TABLE users (
 -- Cars' body types
 
 CREATE TABLE body_types (
-  body_type varchar(255) PRIMARY KEY
+  body_type varchar(20) PRIMARY KEY
 );
 
 -- Transmission's types
 
 CREATE TABLE transmissions (
-  transmission varchar(255) PRIMARY KEY
+  transmission varchar(20) PRIMARY KEY
 );
 
 -- Brands
 
 CREATE TABLE brands (
   id int PRIMARY KEY AUTO_INCREMENT,
-  brand varchar(255)
+  brand varchar(255) NOT NULL UNIQUE
 );
 
 -- Cars' models
@@ -60,28 +61,27 @@ CREATE TABLE models (
   FOREIGN KEY (brand_id) REFERENCES brands(id)
 );
 
--- Vehicle details
+-- Body details
 
-CREATE TABLE vehicle_details (
+CREATE TABLE body_details(
   id int PRIMARY KEY AUTO_INCREMENT,
-  brand int NOT NULL,
-  model int NOT NULL,
-  body_type varchar(255) NOT NULL,
-  transmission varchar(255),
-  number_of_doors int NOT NULL,
-  FOREIGN KEY (brand) REFERENCES brands(id),
-  FOREIGN KEY (model) REFERENCES models(id),
+  model_id int NOT NULL,
+  body_type varchar(20) NOT NULL,
+  number_of_doors int NOT null,
+  transmission varchar(20) NOT NULL,
+  FOREIGN KEY (model_id) REFERENCES models(id),
   FOREIGN KEY (body_type) REFERENCES body_types(body_type),
-  FOREIGN KEY (transmission) REFERENCES transmissions(transmission)
+  FOREIGN KEY (transmission) REFERENCES transmissions(transmission),
+  UNIQUE (model_id, body_type, number_of_doors, transmission)
 );
 
 CREATE TABLE cars (
   id int PRIMARY KEY AUTO_INCREMENT,
   year int NOT NULL,
   price_per_day int NOT NULL,
-  vehicle_details int NOT NULL,
+  body_details int NOT NULL,
   photoLink TEXT(100000) NOT NULL,
-  FOREIGN KEY (vehicle_details) REFERENCES vehicle_details (id)
+  FOREIGN KEY (body_details) REFERENCES body_details (id)
 );
 
 CREATE TABLE booking (

@@ -12,7 +12,7 @@ if (isManagment()) {
 
 $usersAmount = countUsers();
 $usersPerPage = 10;
-$pagesAmount = $usersAmount / $usersPerPage + (($usersAmount % $usersPerPage > 0) ? 1 : 0);
+$pagesAmount = intdiv($usersAmount, $usersPerPage) + (($usersAmount % $usersPerPage > 0) ? 1 : 0);
 
 /**
  * carsManagement

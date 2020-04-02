@@ -31,4 +31,8 @@ if (!isAdmin()) {
  * requests
  */
 
-$bookingRequests = listBookings();
+if(isset($_POST['Approve'])){
+    approve($_POST['customer_id'], $_POST['car_id'], $_POST['rent_start_time']);
+}
+
+$bookingRequests = listPendingBookings();

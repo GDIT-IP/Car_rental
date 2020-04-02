@@ -1,5 +1,6 @@
 -- Remove all tables
 
+DROP TABLE IF EXISTS mailer;
 DROP TABLE IF EXISTS booking;
 DROP TABLE IF EXISTS cars;
 DROP TABLE IF EXISTS vehicle_details;
@@ -11,6 +12,16 @@ DROP TABLE IF EXISTS transmissions;
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS roles;
 DROP TABLE IF EXISTS user_details;
+
+-- Mailer credentials table
+CREATE TABLE mailer
+(
+    host     varchar(30)  NOT NULL DEFAULT 'smtp.example.com',
+    username varchar(100) NOT NULL DEFAULT 'example@email.com',
+    password varchar(100) NOT NULL DEFAULT 'examplepass',
+    port     int          NOT NULL DEFAULT 587,
+    maskname varchar(100) NOT NULL DEFAULT 'Mailer'
+);
 
 -- Create roles
 

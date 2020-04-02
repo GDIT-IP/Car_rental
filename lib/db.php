@@ -1,6 +1,6 @@
 <?php
 require_once APPLICATION_PATH . DS . 'config' . DS . 'dbconfig.php';
-
+require_once APPLICATION_PATH . DS . 'model' . DS . 'Mailer.php';
 
 function getRoles() {
     $conn = getConnection();
@@ -76,4 +76,23 @@ function getPassword($login)
     if ($result->num_rows > 0) {
         return $password;
     }
+}
+
+function getMailer(){
+    $sql = "select * from mailer limit 1;";
+    $con = getConnection();
+    if($result = $con->query($sql)) {
+        if($row = $result->fetch_array()) {
+            $mailer = new Mailer();
+            $mailer->smtpHost = $row['host'];
+            $mailer->smtpUsername = $row['username'];
+            $mailer->smtpPassword = $row['password'];
+            $mailer->smtpPort = $row['port'];
+            $mailer->smtpMask = $row['maskname'];
+        }
+    } else {
+        echo "MailerDao getCredentials(): couldn't execute sql: " . $sql . " error: " . $con->error;
+    }
+    $con->close();
+    return $mailer;
 }

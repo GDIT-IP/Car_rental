@@ -37,3 +37,12 @@
     background-repeat: no-repeat;
     background-size: cover;
 }
+
+.captcha-box{
+    text-align: center;
+    margin-top: 15px;
+}
+
+.g-recaptcha{
+    display: inline-block;
+}

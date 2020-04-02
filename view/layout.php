@@ -11,6 +11,8 @@
     <title>Car rental</title>
     <!-- Custom styles -->
     <link href="css/styles.css" rel="stylesheet">
+    <!-- Captcha -->
+    <script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
 <body>
 <!-- Header -->
@@ -30,5 +32,4 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"
         integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm"
         crossorigin="anonymous"></script>
-
 </html>

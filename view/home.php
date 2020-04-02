@@ -19,9 +19,10 @@
                             <li>Year: <?= $car->getYear() ?></li>
                             <li>Transmission: <?= $car->getTransmission() ?></li>
                         </ul>
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                            <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                        <div class="row d-flex justify-content-center">
+                            <div class="btn-group col-6">
+                                <a type="button" class="btn btn-sm btn-outline-success" href="?page=rentRequest">Rent</a>
+                            </div>
                         </div>
                     </div>
                 </div>

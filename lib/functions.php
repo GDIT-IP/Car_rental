@@ -13,7 +13,7 @@ function isManagment()
     if (!isset($_SESSION['user'])) {
         return false;
     }
-    $user = $_SESSION['user'];
+    $user = unserialize($_SESSION['user']);
     $role = $user->getRole();
     return in_array($role, $authorized, true);
 }
@@ -23,7 +23,7 @@ function isAdmin()
     if (!isset($_SESSION['user'])) {
         return false;
     }
-    $user = $_SESSION['user'];
+    $user = unserialize($_SESSION['user']);
     $role = $user->getRole();
     return (strcasecmp($role, 'Administrator') == 0);
 }
@@ -50,8 +50,9 @@ function console_log($output, $with_script_tags = true)
     echo $js_code;
 }
 
-function isPostParamNotEmpty($paramName) {
-    if (!isset($_POST[$paramName]) || empty(trim($_POST[$paramName]))){
+function isPostParamNotEmpty($paramName)
+{
+    if (!isset($_POST[$paramName]) || empty(trim($_POST[$paramName]))) {
         return false;
     }
     return true;

@@ -13,8 +13,39 @@ VALUES ('333', '333', (SELECT id FROM roles WHERE role = 'Customer'), 'yib00005x
 INSERT INTO users(login, password, role, email)
 VALUES ('444', '444', (SELECT id FROM roles WHERE role = 'Customer'), 'yib00005wj@aspire2student.ac.nz');
 INSERT INTO users(login, password, role, email, first_name, last_name, enabled)
-VALUES ('555', '555', (SELECT id FROM roles WHERE role = 'Administrator'), 'myEmail', 'Bruce', 'Wayne',
-        false);
+VALUES ('555', '555', (SELECT id FROM roles WHERE role = 'Administrator'), 'myEmail', 'Bruce', 'Wayne', false);
+INSERT INTO users(login, password, role, email)
+VALUES ('example_user_1', 'example_user_1', (SELECT id FROM roles WHERE role = 'Customer'), 'example_user_1@aspire2student.ac.nz');
+INSERT INTO users(login, password, role, email)
+VALUES ('example_user_2', 'example_user_2', (SELECT id FROM roles WHERE role = 'Customer'), 'example_user_2@aspire2student.ac.nz');
+INSERT INTO users(login, password, role, email)
+VALUES ('example_user_3', 'example_user_3', (SELECT id FROM roles WHERE role = 'Customer'), 'example_user_3@aspire2student.ac.nz');
+INSERT INTO users(login, password, role, email)
+VALUES ('example_user_4', 'example_user_4', (SELECT id FROM roles WHERE role = 'Customer'), 'example_user_4@aspire2student.ac.nz');
+INSERT INTO users(login, password, role, email)
+VALUES ('example_user_5', 'example_user_5', (SELECT id FROM roles WHERE role = 'Customer'), 'example_user_5@aspire2student.ac.nz');
+INSERT INTO users(login, password, role, email)
+VALUES ('example_user_6', 'example_user_6', (SELECT id FROM roles WHERE role = 'Customer'), 'example_user_6@aspire2student.ac.nz');
+INSERT INTO users(login, password, role, email)
+VALUES ('example_user_7', 'example_user_7', (SELECT id FROM roles WHERE role = 'Customer'), 'example_user_7@aspire2student.ac.nz');
+INSERT INTO users(login, password, role, email)
+VALUES ('example_user_8', 'example_user_8', (SELECT id FROM roles WHERE role = 'Customer'), 'example_user_8@aspire2student.ac.nz');
+INSERT INTO users(login, password, role, email)
+VALUES ('example_user_9', 'example_user_9', (SELECT id FROM roles WHERE role = 'Customer'), 'example_user_9@aspire2student.ac.nz');
+INSERT INTO users(login, password, role, email)
+VALUES ('example_user_10', 'example_user_10', (SELECT id FROM roles WHERE role = 'Customer'), 'example_user_10@aspire2student.ac.nz');
+INSERT INTO users(login, password, role, email)
+VALUES ('example_user_11', 'example_user_11', (SELECT id FROM roles WHERE role = 'Customer'), 'example_user_11@aspire2student.ac.nz');
+INSERT INTO users(login, password, role, email)
+VALUES ('example_user_12', 'example_user_12', (SELECT id FROM roles WHERE role = 'Customer'), 'example_user_12@aspire2student.ac.nz');
+INSERT INTO users(login, password, role, email)
+VALUES ('example_user_13', 'example_user_13', (SELECT id FROM roles WHERE role = 'Customer'), 'example_user_13@aspire2student.ac.nz');
+INSERT INTO users(login, password, role, email)
+VALUES ('example_user_14', 'example_user_14', (SELECT id FROM roles WHERE role = 'Customer'), 'example_user_14@aspire2student.ac.nz');
+INSERT INTO users(login, password, role, email)
+VALUES ('example_user_15', 'example_user_15', (SELECT id FROM roles WHERE role = 'Customer'), 'example_user_15@aspire2student.ac.nz');
+INSERT INTO users(login, password, role, email)
+VALUES ('example_user_16', 'example_user_16', (SELECT id FROM roles WHERE role = 'Customer'), 'example_user_16@aspire2student.ac.nz');
 
 -- Body types
 INSERT INTO body_types(body_type) VALUES ('SUV');

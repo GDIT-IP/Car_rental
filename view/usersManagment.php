@@ -1,9 +1,4 @@
-<div class="row">
-    <div class="col mb-4">
-        <a class="btn btn-primary" href="?page=signup">Add user</a>
-    </div>
-</div>
-<table class="table">
+<table class="table mt-5">
     <thead>
     <tr>
         <th scope="col">Id</th>
@@ -12,19 +7,27 @@
         <th scope="col"></th>
     </tr>
     </thead>
-    <tbody>
-    <?php foreach ($users as $user): ?>
-        <tr>
-            <th scope="row"><?= $user->getId() ?></th>
-            <td><?= $user->getLogin() ?></td>
-            <td><?= $user->getRole() ?></td>
-            <td>
-                <a class="btn btn-outline-success" href="/?page=profile&id=<?= $user->getId() ?>">Edit</a>
-                <?php if ($_SESSION['user']->getLogin() != $user->getLogin()): ?>
-                    <a class="btn btn-outline-danger" href="#">Delete</a>
-                <?php endif; ?>
-            </td>
-        </tr>
-    <?php endforeach; ?>
+    <tbody id="usersList">
     </tbody>
 </table>
+
+
+<?php if ($pagesAmount > 1) { ?>
+    <nav>
+        <ul class="pagination pagination-sm justify-content-center">
+            <?php for ($i = 1; $i <= $pagesAmount; $i++) {
+                echo '<li class="page-item" ><button class="page-link" onclick="getUsersTable(' . $i . ')">' . $i . '</button ></li>';
+            } ?>
+        </ul>
+    </nav>
+<?php } ?>
+
+<div class="row">
+    <div class="col mb-4">
+        <a class="btn btn-primary" href="?page=signup">Add user</a>
+    </div>
+</div>
+
+<script type="text/javascript">let usersPerPage = <?= $usersPerPage; ?></script>
+<script type="text/javascript" src="./js/usersManagement.js"></script>
+<script type="text/javascript">getUsersTable(1);</script>

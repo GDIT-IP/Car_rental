@@ -12,6 +12,7 @@
                 <div class="form-group row">
                     <h2><?= $car->getBrand() ?> <?= $car->getModel() ?></h2>
                 </div>
+                <hr class="row mr-n5">
                 <div class="form-group row">
                     <h4><?= $car->getBodyType() ?></h4>
                 </div>

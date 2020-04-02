@@ -15,7 +15,7 @@
     </tr>
     </thead>
     <tbody>
-    <?php foreach ($bodyDetails as $car): ?>
+    <?php foreach ($cars as $car): ?>
         <tr>
             <th scope="row"><?= $car->getId() ?></th>
             <td><?= $car->getBrand() ?></td>

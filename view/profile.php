@@ -19,7 +19,7 @@
         <?php if (isAdmin()): ?>
             <div class="form-group row">
                 <label class="col-4" for="login">Authority:</label>
-                <input type="text" class="col-8 form-control" id="login" placeholder="<?= $user->getRole() ?>">
+                <input type="text" class="col-8 form-control" id="role" placeholder="<?= $user->getRole() ?>">
             </div>
             <?php if ($_SESSION['user'] != $user): ?>
                 <div class="form-group row">

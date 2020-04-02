@@ -20,7 +20,7 @@ foreach ($users as $user) {
     $tableContent .= '<th scope="row">' . $user->getId() . '</th>';
     $tableContent .= '<td>' . $user->getLogin() . '</td>';
     $tableContent .= '<td>' . $user->getRole() . '</td>';
-    $tableContent .= '<td> <a class="btn btn-outline-success" href="/?page=profile&id=<?= $user->getId() ?>">Edit</a>';
+    $tableContent .= '<td> <a class="btn btn-outline-success" href="/?page=profile&id=' . $user->getId().'">Edit</a>';
     if ($currentUser->getLogin() != $user->getLogin()) {
         $tableContent .= '<a class="btn btn-outline-danger mx-3" href="#">Delete</a>';
     }

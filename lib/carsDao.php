@@ -6,11 +6,11 @@ function getCars()
 {
     $conn = getConnection();
     $query = "SELECT
-              c.id, b.brand, m.model, c.price_per_day, c.year, vd.transmission, vd.number_of_doors, c.photoLink
+              c.id, b.brand, m.model, c.price_per_day, c.year, bd.transmission, bd.number_of_doors, c.photoLink
               FROM cars as c
-              JOIN vehicle_details as vd ON c.vehicle_details = vd.id
-              JOIN models as m ON vd.model = m.id
-              JOIN brands as b ON vd.brand = b.id;";
+              JOIN body_details as bd ON c.body_details = bd.id
+              JOIN models as m ON bd.model_id = m.id
+              JOIN brands as b ON m.brand_id = b.id;";
     $stmt = $conn->prepare($query);
     $stmt->execute();
     $queryResult = $stmt->get_result();
@@ -46,7 +46,7 @@ function createCar($car)
     $photoLink = $car->getPhotoLink();
 
     $conn = getConnection();
-    $query = "INSERT INTO cars (year, price_per_day, vehicle_details, photoLink)
+    $query = "INSERT INTO cars (year, price_per_day, body_details, photoLink)
               VALUES(?, ?, ?, ?);";
     $stmt = $conn->prepare($query);
     $stmt->bind_param('iiis', $year, $price, $vehicleId, $photoLink);
@@ -56,11 +56,8 @@ function createCar($car)
 
 function getVehicleId($car)
 {
+    createVehicle($car);
     $id = searchVehicleId($car);
-    if (!$id) {
-        createVehicle($car);
-        $id = searchVehicleId($car);
-    }
     return $id;
 }
 
@@ -73,9 +70,8 @@ function searchVehicleId($car)
     $numberOfDoors = $car->getNumberOfDoors();
 
     $conn = getConnection();
-    $query = "SELECT id FROM vehicle_details
-              WHERE brand = (SELECT id FROM brands WHERE brand = ?)
-              AND model = (SELECT id FROM models WHERE model = ?)
+    $query = "SELECT id FROM body_details
+              WHERE model_id = (SELECT id FROM models WHERE brand_id = ? AND model = ?)
               AND body_type = ?
               AND transmission = ?
               AND number_of_doors = ?;";
@@ -104,18 +100,16 @@ function createVehicle($car)
 
     $conn = getConnection();
     //brand, model, body type, transmission, number of doors
-    $query = "INSERT INTO vehicle_details (brand, model, body_type, transmission, number_of_doors)
-              VALUES (
-                      (SELECT id FROM brands WHERE brand = ?),
-                      (SELECT id FROM models WHERE model = ?),
-                      ?, ?, ?);";
+    $query = "INSERT IGNORE INTO body_details (model_id, body_type, number_of_doors, transmission)
+              VALUES ((SELECT id FROM models WHERE brand_id = ? AND model = ?), ?, ?, ?);";
+
     $stmt = $conn->prepare($query);
     $stmt->bind_param('ssssi',
         $brand,
         $model,
         $bodyType,
-        $transmission,
-        $numberOfDoors);
+        $numberOfDoors,
+        $transmission);
     $stmt->execute();
     $conn->close();
 }
@@ -128,8 +122,8 @@ function mapModels()
     foreach ($brands as $brand) {
         $query = "SELECT model
                   FROM models
-                  JOIN brands
-                  ON models.brand_id = brands.id
+                  JOIN brands as b
+                  ON models.brand_id = b.id
                   WHERE brand = ?;";
         $stmt = $conn->prepare($query);
         $stmt->bind_param('s', $brand);

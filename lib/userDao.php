@@ -100,7 +100,8 @@ function createUser($login, $password, $role, $email, $fName, $lName, $message)
     echo $message;
 }
 
-function update($user) {
+function update($user)
+{
     $flag = false;
 
     $p_id = $user->getId();
@@ -136,5 +137,26 @@ function update($user) {
     $stmt->close();
     $con->close();
 
+    return $flag;
+}
+
+function deleteUser($id)
+{
+    $flag = false;
+
+    $sql = "DELETE FROM users WHERE id = ?";
+
+    $con = getConnection();
+    $stmt = $con->prepare($sql);
+    $stmt->bind_param("i", $id);
+
+    if ($stmt->execute()) {
+        $flag = true;
+    } else {
+        echo "userDao delete(postId): couldn't execute sql: " . $sql . " error: " . $con->error;
+        exit();
+    }
+    $stmt->close();
+    $con->close();
     return $flag;
 }

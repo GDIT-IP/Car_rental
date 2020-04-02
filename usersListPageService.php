@@ -21,8 +21,12 @@ foreach ($users as $user) {
     $tableContent .= '<td>' . $user->getLogin() . '</td>';
     $tableContent .= '<td>' . $user->getRole() . '</td>';
     $tableContent .= '<td> <a class="btn btn-outline-success" href="./?page=profile&id=' . $user->getId().'">Edit</a>';
-    if ($currentUser->getLogin() != $user->getLogin()) {
-        $tableContent .= '<a class="btn btn-outline-danger mx-3" href="#">Delete</a>';
+    if ($currentUser->getId() != $user->getId()) {
+        $tableContent .= '<button type="button" class="btn btn-outline-danger mx-3"
+                                  data-id="' . $user->getId() . '"
+                                  data-role="' . $user->getRole() . '"
+                                  data-login="' . $user->getLogin() . '"
+                                  data-toggle="modal" data-target="#deleteUserModal">Delete</button>';
     }
     $tableContent .= '</td></tr>';
 }

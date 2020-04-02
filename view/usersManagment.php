@@ -28,6 +28,31 @@
     </div>
 </div>
 
+<div class="modal fade" id="deleteUserModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteUserModalTitle">Delete Post</h5>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <form method="POST" action="./deleteUser.php">
+                        <input type="hidden" id="userToDeleteId" name="userId" value=""/>
+                        <p>Are you sure you want to delete user <b><span id="user-login"></span></b>
+                            with role <b><span id="user-role"></span></b> ?</p>
+                        <p>There is no undo for this</p>
+                        <input type="submit" class="btn btn-danger" name="deletePost" value="Delete"/>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script type="text/javascript">let usersPerPage = <?= $usersPerPage; ?></script>
 <script type="text/javascript" src="./js/usersManagement.js"></script>
 <script type="text/javascript">getUsersTable(1);</script>

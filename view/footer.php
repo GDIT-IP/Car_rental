@@ -12,7 +12,7 @@
         <div class="col-6 col-md">
             <h5>Resources</h5>
             <ul class="list-unstyled text-small">
-                <li><a class="text-muted" href="#">Resource</a></li>
+                <li><a class="text-muted" href="/?page=feedback">Enquiry and Feedbacks</a></li>
             </ul>
         </div>
         <div class="col-6 col-md">

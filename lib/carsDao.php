@@ -31,16 +31,69 @@ function getCars()
     return $cars;
 }
 
+function readCar($id) {
+    $conn = getConnection();
+    $query = "SELECT
+              c.id, b.brand, m.model, c.price_per_day, bd.body_type, c.year, bd.transmission, bd.number_of_doors, c.photoLink
+              FROM cars as c
+              JOIN body_details as bd ON c.body_details = bd.id
+              JOIN models as m ON bd.model_id = m.id
+              JOIN brands as b ON m.brand_id = b.id
+              WHERE c.id = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param('i', $id);
+    $stmt->execute();
+    $queryResult = $stmt->get_result();
+    $car = new Car();
+    while ($row = $queryResult->fetch_assoc()) {
+        $car->setId($row['id']);
+        $car->setBrand($row['brand']);
+        $car->setModel($row['model']);
+        $car->setBodyType($row['body_type']);
+        $car->setPricePerDay($row['price_per_day']);
+        $car->setYear($row['year']);
+        $car->setTransmission($row['transmission']);
+        $car->setNumberOfDoors($row['number_of_doors']);
+        $car->setPhotoLink($row['photoLink']);
+    }
+    $conn->close();
+    return $car;
+}
+
 function updateCar($car)
 {
+    $flag = false;
+
+    $id = $car->getId();
+    $year = $car->getYear();
+    $price = $car->getPricePerDay();
+    $bodyDetailId = getBodyDetailsId($car);
+    $photoLink = $car->getPhotoLink();
+
     $conn = getConnection();
-    $query = "UPDATE ";
+    $sql = "UPDATE cars
+              SET year = ?, price_per_day = ?, body_details = ?, photoLink = ?
+              WHERE id = ?";
+
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param('iiisi', $year, $price, $bodyDetailId, $photoLink, $id);
+    if ($stmt->execute()) {
+        $flag = true;
+    } else {
+        echo $sql;
+        $flag = "carDao updateCar($car): couldn't execute sql: " . $sql . " error: " . $conn->error;
+    }
+    $stmt->close();
     $conn->close();
+
+    return $flag;
 }
 
 function createCar($car)
 {
-    $vehicleId = getVehicleId($car);
+    $flag = false;
+
+    $vehicleId = getBodyDetailsId($car);
     $year = $car->getYear();
     $price = $car->getPricePerDay();
     $photoLink = $car->getPhotoLink();
@@ -54,7 +107,7 @@ function createCar($car)
     $conn->close();
 }
 
-function getVehicleId($car)
+function getBodyDetailsId($car)
 {
     createVehicle($car);
     $id = searchVehicleId($car);
@@ -71,7 +124,7 @@ function searchVehicleId($car)
 
     $conn = getConnection();
     $query = "SELECT id FROM body_details
-              WHERE model_id = (SELECT id FROM models WHERE brand_id = ? AND model = ?)
+              WHERE model_id = (SELECT id FROM models WHERE brand_id = (SELECT id FROM brands WHERE brand = ?) AND model = ?)
               AND body_type = ?
               AND transmission = ?
               AND number_of_doors = ?;";
@@ -85,13 +138,16 @@ function searchVehicleId($car)
     $stmt->execute();
     $queryResult = $stmt->get_result();
     if ($queryResult->num_rows != 0) {
-        return $queryResult->fetch_assoc()['id'];
+        $id = $queryResult->fetch_assoc()['id'];
     }
     $conn->close();
+    return $id;
 }
 
 function createVehicle($car)
 {
+    $flag = false;
+
     $brand = $car->getBrand();
     $model = $car->getModel();
     $bodyType = $car->getBodyType();
@@ -100,18 +156,27 @@ function createVehicle($car)
 
     $conn = getConnection();
     //brand, model, body type, transmission, number of doors
-    $query = "INSERT IGNORE INTO body_details (model_id, body_type, number_of_doors, transmission)
-              VALUES ((SELECT id FROM models WHERE brand_id = ? AND model = ?), ?, ?, ?);";
+    $sql = "INSERT IGNORE INTO body_details (model_id, body_type, transmission, number_of_doors )
+              VALUES ((SELECT id FROM models WHERE brand_id = (SELECT id FROM brands WHERE brand = ?) AND model = ?), ?, ?, ?)";
 
-    $stmt = $conn->prepare($query);
+    $stmt = $conn->prepare($sql);
     $stmt->bind_param('ssssi',
         $brand,
         $model,
         $bodyType,
-        $numberOfDoors,
-        $transmission);
-    $stmt->execute();
+        $transmission,
+        $numberOfDoors);
+
+    if ($stmt->execute()) {
+        $flag = true;
+    } else {
+        echo $sql;
+        $flag = "carDao createVehicle($car): couldn't execute sql: " . $sql . " error: " . $conn->error;
+    }
+    $stmt->close();
     $conn->close();
+
+    return $flag;
 }
 
 function mapModels()

@@ -2,35 +2,35 @@
     <form class="col-9" method="POST" action="">
         <div class="form-group row">
             <label class="col-4" for="login">Username:</label>
-            <label id="login"><?= $user->getLogin() ?></label>
+            <label id="login"><?= $car->getLogin() ?></label>
         </div>
         <div class="form-group row">
             <label class="col-4" for="first-name">First name:</label>
-            <input type="text" class="col-8 form-control" id="first-name" name="first-name" placeholder="<?= $user->getFirstName() ?>">
+            <input type="text" class="col-8 form-control" id="first-name" name="first-name" placeholder="<?= $car->getFirstName() ?>">
         </div>
         <div class="form-group row">
             <label class="col-4" for="last-name">Last name:</label>
-            <input type="text" class="col-8 form-control" id="last-name" name="last-name" placeholder="<?= $user->getLastName() ?>">
+            <input type="text" class="col-8 form-control" id="last-name" name="last-name" placeholder="<?= $car->getLastName() ?>">
         </div>
         <div class="form-group row">
             <label class="col-4" for="email">Email:</label>
-            <input type="text" class="col-8 form-control" id="email" name="email" placeholder="<?= $user->getEmail() ?>">
+            <input type="text" class="col-8 form-control" id="email" name="email" placeholder="<?= $car->getEmail() ?>">
         </div>
         <?php if (isAdmin()): ?>
             <div class="form-group row">
                 <label class="col-4" for="role">Authority:</label>
                 <select class="col-8 form-control" id="role" name="role">
                     <?php foreach ($roles as $role) {?>
-                        <option value='<?= $role ?>' <?php echo ($user->getRole() == $role) ? 'selected' : '' ?>><?= $role ?></option>
+                        <option value='<?= $role ?>' <?php echo ($car->getRole() == $role) ? 'selected' : '' ?>><?= $role ?></option>
                     <?php } ?>
                 </select>
             </div>
-            <?php if (unserialize($_SESSION['user']) != $user): ?>
+            <?php if (unserialize($_SESSION['user']) != $car): ?>
                 <div class="form-group row">
                     <label class="col-4 form-check-label" for="is-active">Enabled</label>
                     <select class="col-8 form-control" id="is-active" name="is-active">
-                        <option value='1' <?php echo $user->getEnabled() ? 'selected' : '' ?>>Active</option>
-                        <option value='0' <?php echo $user->getEnabled() ? '' : 'selected' ?>>Disabled</option>
+                        <option value='1' <?php echo $car->getEnabled() ? 'selected' : '' ?>>Active</option>
+                        <option value='0' <?php echo $car->getEnabled() ? '' : 'selected' ?>>Disabled</option>
                     </select>
                 </div>
             <?php endif; ?>

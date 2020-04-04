@@ -2,15 +2,20 @@
 
 require_once APPLICATION_PATH . DS . 'model' . DS . 'Car.php';
 
-function getCars()
+function listCars()
 {
     $conn = getConnection();
-    $query = "SELECT
-              c.id, b.brand, m.model, c.price_per_day, c.year, bd.transmission, bd.number_of_doors, c.photoLink
+    $query = "SELECT c.id, b.brand, m.model, c.price_per_day, c.year, bd.transmission, bd.number_of_doors,
+                     c.photoLink, book.is_in_use
               FROM cars as c
               JOIN body_details as bd ON c.body_details = bd.id
               JOIN models as m ON bd.model_id = m.id
-              JOIN brands as b ON m.brand_id = b.id;";
+              JOIN brands as b ON m.brand_id = b.id
+              LEFT JOIN 
+                  (SELECT car_id, is_approved as is_in_use 
+                  FROM booking 
+                  WHERE !(current_timestamp() NOT BETWEEN rent_start_time AND rent_end_time )) AS book 
+                      ON c.id = book.car_id";
     $stmt = $conn->prepare($query);
     $stmt->execute();
     $queryResult = $stmt->get_result();
@@ -25,6 +30,7 @@ function getCars()
         $car->setTransmission($row['transmission']);
         $car->setPricePerDay($row['price_per_day']);
         $car->setPhotoLink($row['photoLink']);
+        $car->setIsAvailable(!isset($row['is_in_use'])); //sql returns TRUE for cars in use
         $cars[] = $car;
     }
     $conn->close();
@@ -33,12 +39,17 @@ function getCars()
 
 function readCar($id) {
     $conn = getConnection();
-    $query = "SELECT
-              c.id, b.brand, m.model, c.price_per_day, bd.body_type, c.year, bd.transmission, bd.number_of_doors, c.photoLink
+    $query = "SELECT c.id, b.brand, m.model, c.price_per_day, c.year, bd.body_type, bd.transmission, bd.number_of_doors,
+                     c.photoLink, book.is_in_use
               FROM cars as c
               JOIN body_details as bd ON c.body_details = bd.id
               JOIN models as m ON bd.model_id = m.id
               JOIN brands as b ON m.brand_id = b.id
+              LEFT JOIN 
+                  (SELECT car_id, is_approved as is_in_use 
+                  FROM booking 
+                  WHERE !(current_timestamp() NOT BETWEEN rent_start_time AND rent_end_time )) AS book 
+                      ON c.id = book.car_id
               WHERE c.id = ?";
     $stmt = $conn->prepare($query);
     $stmt->bind_param('i', $id);
@@ -55,6 +66,7 @@ function readCar($id) {
         $car->setTransmission($row['transmission']);
         $car->setNumberOfDoors($row['number_of_doors']);
         $car->setPhotoLink($row['photoLink']);
+        $car->setIsAvailable(!isset($row['is_in_use'])); //sql returns TRUE for cars in use
     }
     $conn->close();
     return $car;

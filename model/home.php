@@ -1,2 +1,2 @@
 <?php
-$cars = getCars();
+$cars = listCars();

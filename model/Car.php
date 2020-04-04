@@ -11,6 +11,7 @@ class Car
     Private $numberOfDoors;
     Private $bodyType;
     Private $photoLink;
+    Private $isAvailable;
 
     public function getId()
     {
@@ -100,5 +101,15 @@ class Car
     public function setPhotoLink($photoLink)
     {
         $this->photoLink = $photoLink;
+    }
+
+    public function getIsAvailable()
+    {
+        return $this->isAvailable;
+    }
+
+    public function setIsAvailable($isAvailable)
+    {
+        $this->isAvailable = $isAvailable;
     }
 }

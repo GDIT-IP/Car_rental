@@ -18,7 +18,7 @@ $pagesAmount = intdiv($usersAmount, $usersPerPage) + (($usersAmount % $usersPerP
  * carsManagement
  */
 
-$cars = getCars();
+$cars = listCars();
 
 $isCarsActive = '';
 $carsTabClasses = '';
@@ -30,9 +30,14 @@ if (!isAdmin()) {
 /**
  * requests
  */
-
-if(isset($_POST['Approve'])){
-    approve($_POST['customer_id'], $_POST['car_id'], $_POST['rent_start_time']);
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST['approve'])) {
+        $is_approved = true;
+    } else if (isset($_POST['reject'])) {
+        $is_approved = false;
+    }
+    consider($_POST['customer_id'], $_POST['car_id'], $_POST['rent_start_time'], $is_approved);
+    header('location: ');
 }
 
-$bookingRequests = listPendingBookings();
+$bookingRequests = listBookings();

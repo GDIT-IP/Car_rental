@@ -28,23 +28,29 @@
                 <div class="form-group row">
                     <h4>$<?= $car->getPricePerDay() ?> per day </h4>
                 </div>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="form-group row mr-1">
-                            <span class="form-label">From</span>
-                            <input name="fromDate" class="form-control" type="date" required="">
+                <?php if ($car->getIsAvailable()): ?>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group row mr-1">
+                                <span class="form-label">From</span>
+                                <input name="fromDate" class="form-control" type="date" required="">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group row ml-1">
+                                <span class="form-label">To</span>
+                                <input name="tillDate" class="form-control" type="date" required="">
+                            </div>
                         </div>
                     </div>
-                    <div class="col-sm-6">
-                        <div class="form-group row ml-1">
-                            <span class="form-label">To</span>
-                            <input name="tillDate" class="form-control" type="date" required="">
-                        </div>
+                    <div class="form-group row">
+                        <input type="submit" class="btn btn btn-success" name="requestBooking" value="Request booking">
                     </div>
-                </div>
-                <div class="form-group row">
-                    <input type="submit" class="btn btn btn-success" name="requestBooking" value="Request booking">
-                </div>
+                <?php else: ?>
+                    <div class="form-group row">
+                        <label class="text-secondary">Currently the car is not available</label>
+                    </div>
+                <?php endif; ?>
             </div>
         </div>
     </form>

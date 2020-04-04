@@ -21,7 +21,13 @@
                         </ul>
                         <div class="row d-flex justify-content-center">
                             <div class="btn-group col-6">
-                                <a type="button" class="btn btn-sm btn-outline-success" href="?page=rentRequest&id=<?= $car->getId() ?>">Rent</a>
+                                <?php if ($car->getIsAvailable()): ?>
+                                    <a type="button" class="btn btn-sm btn-success"
+                                       href="?page=rentRequest&id=<?= $car->getId() ?>">Rent</a>
+                                <?php else: ?>
+                                    <a type="button" class="btn btn-sm btn-outline-secondary"
+                                       href="?page=rentRequest&id=<?= $car->getId() ?>">View Info</a>
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>

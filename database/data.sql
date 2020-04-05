@@ -341,3 +341,10 @@ VALUES (6, 1998, 120,
 INSERT IGNORE INTO cars(body_details, year, price_per_day, photoLink)
 VALUES (11, 2011, 150,
         'https://live.staticflickr.com/8329/8407024885_f4865580ab_b.jpg');
+--Booking
+insert into booking
+VALUES((select id from users where id = 7),(select id from cars where id = 8),'2020-04-01 12:00:00', '2020-04-03 12:00:00',1);
+insert into booking
+VALUES((select id from users where id = 8),(select id from cars where id = 9),'2020-04-03 12:00:00', '2020-04-10 12:00:00',1);
+insert into booking
+VALUES((select id from users where id = 10),(select id from cars where id = 12),'2020-04-10 12:00:00', '2020-04-15 12:00:00',1);

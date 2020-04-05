@@ -130,3 +130,7 @@ function getNoOfUsersByRole(){
     $conn->close();
     return $noOfUsersByRole;
 }
+
+function getBookingInitDay(){
+    
+}

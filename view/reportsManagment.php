@@ -15,11 +15,11 @@
       <div id = "no_of_body_types" style="width:600px;height:400px;"></div>
     </div>
   </div>
-  <div class = "row">
+  <!-- <div class = "row">
     <div class = "col">
       <div id = "users_by_role_2" style="width:600px;height:400px;"></div>
     </div>
-  </div>
+  </div> -->
 </div>
 
 <script src="../js/plotly-latest.min.js"></script>
@@ -89,7 +89,6 @@
     Plotly.newPlot('users_by_role', data, layoutBar, config );
     Plotly.newPlot('no_of_body_types', trace2, layoutPie, config );
     // Plotly.newPlot('users_by_role_2', data, layout, config );
-    // Plotly.newPlot('users_by_role_3', data, layout, config );
  </script> 
 
  

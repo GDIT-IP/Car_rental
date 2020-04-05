@@ -12,7 +12,7 @@
       <div id = "users_by_role" style="width:600px;height:400px;"></div>
     </div>
     <div class = "col-6">
-      <div id = "users_by_role_1" style="width:600px;height:400px;"></div>
+      <div id = "no_of_body_types" style="width:600px;height:400px;"></div>
     </div>
   </div>
   <div class = "row">
@@ -87,7 +87,7 @@
     var config = {responsive: true}
 
     Plotly.newPlot('users_by_role', data, layoutBar, config );
-    Plotly.newPlot('users_by_role_1', trace2, layoutPie, config );
+    Plotly.newPlot('no_of_body_types', trace2, layoutPie, config );
     // Plotly.newPlot('users_by_role_2', data, layout, config );
     // Plotly.newPlot('users_by_role_3', data, layout, config );
  </script> 

@@ -133,5 +133,32 @@ function getNoOfUsersByRole(){
 }
 
 function getBookingInitDay(){
-    
+    $conn = getConnection();
+    $query = "SELECT DISTINCT(rent_start_time) FROM booking ORDER BY rent_start_time";
+    $stmt = $conn->prepare($query);
+    $stmt->execute();
+    $queryResult = $stmt->get_result();
+    $dates = array();
+    while ($row = $queryResult->fetch_assoc()) {
+        $dates[] = $row['rent_start_time'];
+    }
+    $conn->close();
+    return $dates;
+}
+
+function getNoOfBookings(){
+    $dates = getBookingInitDay();
+    $conn = getConnection();
+    $noOfBookings = array();
+    foreach ($dates as $date){
+        $query = "SELECT COUNT(rent_start_time) from booking where rent_start_time =  '". $date . "'" ;
+        $stmt = $conn->prepare($query);
+        $stmt->execute();
+        $queryResult = $stmt->get_result();
+        while ($row = $queryResult->fetch_assoc()) {
+            $noOfBookings[$date] = $row['COUNT(rent_start_time)'];
+        }
+    }
+    $conn->close();
+    return $noOfBookings;
 }

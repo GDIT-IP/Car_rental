@@ -348,3 +348,5 @@ insert into booking
 VALUES((select id from users where id = 8),(select id from cars where id = 9),'2020-04-03 12:00:00', '2020-04-10 12:00:00',1);
 insert into booking
 VALUES((select id from users where id = 10),(select id from cars where id = 12),'2020-04-10 12:00:00', '2020-04-15 12:00:00',1);
+INSERT INTO `booking`(`customer_id`, `car_id`, `rent_start_time`, `rent_end_time`, `is_approved`) 
+VALUES (13,18,'2020-04-03 12:00:00','2020-04-22 12:00:00',1);

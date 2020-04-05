@@ -46,3 +46,13 @@
 .g-recaptcha{
     display: inline-block;
 }
+
+.line-graph-container{
+    text-align: center;
+    margin-top: 15px;
+}
+
+.line-graph{
+    display: inline-block;
+}
+

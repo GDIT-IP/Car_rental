@@ -15,7 +15,8 @@ function listCars()
                   (SELECT car_id, is_approved as is_in_use 
                   FROM booking 
                   WHERE !(current_timestamp() NOT BETWEEN rent_start_time AND rent_end_time )) AS book 
-                      ON c.id = book.car_id";
+                      ON c.id = book.car_id
+              ORDER BY c.id";
     $stmt = $conn->prepare($query);
     $stmt->execute();
     $queryResult = $stmt->get_result();

@@ -101,7 +101,7 @@ CREATE TABLE booking (
   rent_start_time timestamp,
   rent_end_time timestamp DEFAULT CURRENT_TIMESTAMP,
   is_approved boolean,
-  PRIMARY KEY (customer_id, car_id),
+  PRIMARY KEY (customer_id, car_id, rent_start_time),
   FOREIGN KEY (customer_id) REFERENCES users (id),
   FOREIGN KEY (car_id) REFERENCES cars (id)
 );

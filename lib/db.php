@@ -81,6 +81,7 @@ function getPassword($login)
 function getMailer(){
     $sql = "select * from mailer limit 1;";
     $con = getConnection();
+    $mailer = null;
     if($result = $con->query($sql)) {
         if($row = $result->fetch_array()) {
             $mailer = new Mailer();

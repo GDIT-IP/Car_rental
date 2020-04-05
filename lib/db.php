@@ -96,3 +96,37 @@ function getMailer(){
     $con->close();
     return $mailer;
 }
+
+function getNoOfBodyTypes(){
+    $body_types = getBodyTypes();
+    $conn = getConnection();
+    $noOfBodyTypes = array();
+    foreach ($body_types as $body_type){
+        $query = "SELECT COUNT(body_type) from body_details where body_type = (SELECT body_type from body_types where body_type = '". $body_type . "')" ;
+        $stmt = $conn->prepare($query);
+        $stmt->execute();
+        $queryResult = $stmt->get_result();
+        while ($row = $queryResult->fetch_assoc()) {
+            $noOfBodyTypes[$body_type] = $row['COUNT(body_type)'];
+        }
+    }
+    $conn->close();
+    return $noOfBodyTypes;
+}
+
+function getNoOfUsersByRole(){
+    $roles = getRoles();
+    $conn = getConnection();
+    $noOfUsersByRole = array();
+    foreach ($roles as $role){
+        $query = "SELECT COUNT(role) from users where role = (SELECT id from roles where role = '". $role . "')" ;
+        $stmt = $conn->prepare($query);
+        $stmt->execute();
+        $queryResult = $stmt->get_result();
+        while ($row = $queryResult->fetch_assoc()) {
+            $noOfUsersByRole[$role] = $row['COUNT(role)'];
+        }
+    }
+    $conn->close();
+    return $noOfUsersByRole;
+}

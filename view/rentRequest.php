@@ -6,7 +6,6 @@
                     <div class="photo"
                          style="height: 20em; background-size: contain; background-image: url(<?= $car->getPhotoLink() ?>);"></div>
                 </div>
-
             </div>
             <div class="col mx-3">
                 <div class="form-group row">
@@ -55,4 +54,3 @@
         </div>
     </form>
 </div>
-
